@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>exam</title>
+<link rel="stylesheet" href="common.css" />
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>Q. 처음으로 일치하는 엘리먼트를 반환하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>1<em>em</em></div>
+				<div>2<em>em</em></div>
+				<div>3<em>em</em></div>
+			</div>
+			<button type="button">view</button>
+			<p>Tip) :first / .first()</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 마지막으로 일치하는 엘리먼트를 반환하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>1<em>em</em></div>
+				<div>2<em>em</em></div>
+				<div>3<em>em</em></div>
+			</div>
+			<button type="button">view</button>
+			<p>Tip) :last / .last()</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 첫번째 자식 엘리먼트를 반환하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>1<em>em</em></div>
+				<div>2<em>em</em></div>
+				<div>3<em>em</em></div>
+			</div>
+			<button type="button">view</button>
+			<p>Tip) :first-child</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 마지막 자식 엘리먼트를 반환하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>1<em>em</em></div>
+				<div>2<em>em</em></div>
+				<div>3<em>em</em></div>
+			</div>
+			<button type="button">view</button>
+			<p>Tip) :last-child</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 2번째 자식 엘리먼트를 반환하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>1</div>
+				<div>2<div>child1</div></div>
+				<div>3<div>child1</div><div>child2</div></div>
+			</div>
+			<button type="button">view</button>
+			<p>Tip) :nth-child(n)</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 3번째로 일치하는 엘리먼트를 반환하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+				<div>5</div>
+				<div>6</div>
+			</div>
+			<button type="button">view</button>
+			<p>Tip) :eq(n) / .eq(n)</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 3번째 엘리먼트 이후의 엘리먼트를 반환하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+				<div>5</div>
+				<div>6</div>
+			</div>
+			<button type="button">view</button>
+			<p>Tip) :gt(n) / .nextAll()</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 3번째 엘리먼트 이전의 엘리먼트를 반환하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>1</div>
+				<div>2</div>
+				<div>3</div>
+				<div>4</div>
+				<div>5</div>
+				<div>6</div>
+			</div>
+			<button type="button">view</button>
+			<p>Tip) :lt(n) / .prevAll()</p>
+		</div>
+	</div>
+	<!-- container [e] -->
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+</div>
+<!-- wrapper [e] -->
+<script>
+var examObj = function(){
+	var doc = document;
+
+	var examBox1 = doc.getElementsByClassName('exam_wrap')[0];
+	examBox1.getElementsByTagName('button')[0].onclick = function () {
+		var examFirstElement = examBox1.getElementsByClassName('exam_q')[0].children[0];
+		examFirstElement.style.backgroundColor = 'yellow';
+	};
+
+	var examBox2 = doc.getElementsByClassName('exam_wrap')[1];
+	examBox2.getElementsByTagName('button')[0].onclick = function () {
+		var examChildElement = examBox2.getElementsByClassName('exam_q')[0].children;
+		for(var i = 0; i < examChildElement.length; i++){
+            var examLastChild = examChildElement[i];
+			if ( i === examChildElement.length - 1) {
+				examLastChild.style.backgroundColor = 'yellow';
+            }
+		}
+	};
+
+	var examBox3 = doc.getElementsByClassName('exam_wrap')[2];
+	examBox3.getElementsByTagName('button')[0].onclick = function () {
+		var examChildElement = examBox3.getElementsByClassName('exam_q')[0],
+			examBoxElement = examChildElement.getElementsByTagName('div')[0],
+			examFirstElementChild = examBoxElement.getElementsByTagName('em');
+		for(var i = 0; i < examFirstElementChild.length; i++){
+            examFirstElementChild[i].style.backgroundColor = 'yellow';
+        };
+	};
+
+	var examBox4 = doc.getElementsByClassName('exam_wrap')[3];
+	examBox4.getElementsByTagName('button')[0].onclick = function () {
+		var examChildElement = examBox4.getElementsByClassName('exam_q')[0],
+			examBoxElement = examChildElement.getElementsByTagName('div'),
+			lastElement = examBoxElement.lastChild;
+		for(var i = 0; i < examBoxElement.length; i++){
+		 	var examLastChild = examBoxElement[i].lastChild;
+		 	if ( i === examBoxElement.length - 1) {
+                examLastChild.style.backgroundColor = 'yellow';
+            }
+        };
+	};
+
+	var examBox5 = doc.getElementsByClassName('exam_wrap')[4];
+	examBox5.getElementsByTagName('button')[0].onclick = function () {
+		var examChildElement = examBox5.getElementsByClassName('exam_q')[0],
+			examSecondChild = examChildElement.getElementsByTagName('div')[1],
+			examSecondChildElement = examSecondChild.children;
+		for(var i = 0; i < examSecondChildElement.length; i++){
+            examSecondChildElement[i].style.backgroundColor = 'yellow';
+        };
+	};
+
+	var examBox6 = doc.getElementsByClassName('exam_wrap')[5];
+	examBox6.getElementsByTagName('button')[0].onclick = function () {
+		var examChildElement = examBox6.getElementsByClassName('exam_q')[0].children;
+        examChildElement[2].style.backgroundColor = 'yellow';
+	};
+
+	var examBox7 = doc.getElementsByClassName('exam_wrap')[6];
+	examBox7.getElementsByTagName('button')[0].onclick = function () {
+		var examChildElement = examBox7.getElementsByClassName('exam_q')[0].children;
+        for(var i = 0; i < examChildElement.length; i++){
+            if ( i > 2 ) {
+                examChildElement[i].style.backgroundColor = 'yellow';
+            }
+        }
+	};
+
+	var examBox8 = doc.getElementsByClassName('exam_wrap')[7];
+	examBox8.getElementsByTagName('button')[0].onclick = function () {
+		var examChildElement = examBox8.getElementsByClassName('exam_q')[0].children;
+        for(var i = 0; i < examChildElement.length; i++){
+            if ( i < 2 ) {
+                examChildElement[i].style.backgroundColor = 'yellow';
+            }
+        }
+	};
+};
+examObj();
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<style>
+body{font-size:14px;line-height:1.5}
+h1,h2,h3,h4,h5,h6{font-size:18px}
+dt{margin-top:20px}
+</style>
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">@</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<section>
+			<h1>javasciprt 선택자 이슈</h1>
+			<dl>
+			<dt>1. getElementsByTagName</dt>
+			<dd>- 모든 브라우저 대응 가능.</dd>
+			<dt>2. getElementsByClassName</dt>
+			<dd>- IE8 이하 지원하지 않음. (<a href="http://caniuse.com/#search=getElementsByClassName" target="_blank">http://caniuse.com/#search=getElementsByClassName</a>)</dd>
+			<dd>- querySelectorAll을 사용하면 대응 가능.</dd>
+			<dt>3. getElementById</dt>
+			<dd>- 모든 브라우저 대응 가능</dd>
+			<dt>4. childNodes</dt>
+			<dd>- 모든 브라우저 대응 가능.</dd>
+			<dt>5. parentNode</dt>
+			<dd>- IE, Android 등 많은 브라우저와 디바이스에서 지원하지 않음. (최신 ios, 브라우저만 대응) (<a href="http://caniuse.com/#search=parentNode" target="_blank">http://caniuse.com/#search=parentNode</a>)</dd>
+			<dd>- jQuery는 parent('li')와 같은 방식으로 부모의 태그까지 필터 가능하며, closest('li')와 같은 방법으로 li를 가진 부모가 나올때까지 탐색 가능.</dd>
+			<dd>- parentElement로 사용하면 범용적으로 사용 가능.</dd>
+			<dt>6. previousSibling, nextSibling</dt>
+			<dd>- 크롬/IE8은 빈 텍스트 노드를 인식하므로, previousElementSibling를 사용하거나(이도 IE8이하는 작동하지 않음.)</dd>
+			<dd>- previousSibling.previousSibling 두 번 탐색하도록 한 번 더 선언해준다.</dd>
+			<dt>7. createTextNode, createElement</dt>
+			<dd>- 모든 브라우저 대응 가능.</dd>
+			<dt>8. innerHTML</dt>
+			<dd>- 모든 브라우저 대응 가능.</dd>
+			<dt>9. cloneNode</dt>
+			<dd>- 모든 브라우저 대응 가능.</dd>
+			<dt>10. removeChild</dt>
+			<dd>- 모든 브라우저 대응 가능.</dd>
+			<dt>11. appendChild</dt>
+			<dd>- 모든 브라우저 대응 가능.</dd>
+			<dt>12. firstChild.nodeValue</dt>
+			<dd>- 모든 브라우저 대응 가능.</dd>
+			<dd>- 요소의 속성값과 노드값까지 변경 가능.</dd>
+			</dl>
+			<p>추가로, :last, :first, :even, :eq()등의 특정 선택자는, Javascript 선택자로는 사용할 수 없다.</p>
+		</section>
+	</div>
+	<!-- container [e] -->
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">@</div>
+	<!-- footer [e] -->
+</div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>exam</title>
+<link rel="stylesheet" href="common.css" />
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>Q. 모든 엘리먼트와 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button" class="btn_view">view</button>
+			<p>Tip) $("*")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 태그명이 span 인 엘리먼트와 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button" class="btn_view">view</button>
+			<p>Tip) $("E")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. em의 자손이면서 태그명이 span 인 엘리먼트와 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button" class="btn_view">view</button>
+			<p>Tip) $("E F")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 부모의 바로 아래 자식이면서 태그명이 span 인 엘리먼트와 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button" class="btn_view">view</button>
+			<p>Tip) $("E>F")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. div의 형제 엘리먼트로 바로 다음에 나오는 p와 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button" class="btn_view">view</button>
+			<p>Tip) $("E+F")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. div의 형제 엘리먼트로 다음에 나오는 모든 엘리먼트 span과 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<p>p</p>
+				<span>span</span>
+				<em>em<span>span</span></em>
+			</div>
+			<button type="button" class="btn_view">view</button>
+			<p>Tip) $("E~F")</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 클래스명 active를 가지는 모든 엘리먼트와 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div>div</div>
+				<div class="active">div</div>
+				<p class="active">p</p>
+				<span class="active">span</span>
+				<span>span</span>
+			</div>
+			<button type="button" class="btn_view">view</button>
+			<p>Tip) $("E.C") E의 생략은 *.C와 동일함.</p>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 아이디가 active인 엘리먼트와 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<div id="active">div</div>
+				<div class="active">div</div>
+				<p class="active">p</p>
+				<span class="active">span</span>
+				<span>span</span>
+			</div>
+			<button type="button" class="btn_view">view</button>
+			<p>Tip) $("E#I") E의 생략은 *#I와 동일함.</p>
+		</div>
+	</div>
+	<!-- container [e] -->
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+</div>
+<!-- wrapper [e] -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+$(function(){
+	var examObj = function () {
+		$('.exam_wrap:eq(0)').find('button').on('click', function(){
+			$('.exam_wrap:eq(0)').find('.exam_q').children().css('background-color', 'yellow');
+		});
+
+		$('.exam_wrap:eq(1)').find('button').on('click', function(){
+			$('.exam_wrap:eq(1)').find('span').css('background-color', 'yellow');
+		});
+
+		$('.exam_wrap:eq(2)').find('button').on('click', function(){
+			$('.exam_wrap:eq(2)').find('em span').css('background-color', 'yellow');
+		});
+
+		$('.exam_wrap:eq(3)').find('button').on('click', function(){
+			$('.exam_wrap:eq(3)').find('div > span').css('background-color', 'yellow');
+			$('.exam_wrap:eq(3)').find('em > span').css('background-color', 'yellow');
+		});
+
+		$('.exam_wrap:eq(4)').find('button').on('click', function(){
+			$('.exam_wrap:eq(4)').find('div + p').css('background-color', 'yellow');
+		});
+
+		$('.exam_wrap:eq(5)').find('button').on('click', function(){
+			$('.exam_wrap:eq(5)').find('.exam_q > div').siblings('span').css('background-color', 'yellow');
+		});
+
+		$('.exam_wrap:eq(6)').find('button').on('click', function(){
+			$('.exam_wrap:eq(6)').find('.active').css('background-color', 'yellow');
+		});
+
+		$('.exam_wrap:eq(7)').find('button').on('click', function(){
+			$('.exam_wrap:eq(7)').find('#active').css('background-color', 'yellow');
+		});
+	};
+	examObj();
+});
+
+
+// (function (win, $) {
+// 	'use strict';
+// 	win.exam = win.exam || {};
+
+// 	win.exam.examObj1 = function (container, args) {
+// 		var defParams = {
+// 			wrap : '.exam_wrap',
+// 			contBox : '.exam_q',
+// 			viewBtn : '.btn_view',
+// 			activeClass : '.active',
+// 			activeId : '#active',
+// 			bgElement : 'background-color',
+// 			bgColor : 'yellow'
+// 		}
+// 		this.obj = container;
+//         this.opts = $.extend({}, defParams, (args || {}));
+//         this.init();
+// 	};
+// 	win.exam.examObj1.prototype = {
+// 		init : function () {
+// 			this.setElements();
+// 			this.bindEvents();
+// 		},
+// 		setElements : function () {
+// 			this.box1 = $(this.opts.wrap)[0];
+// 			this.box2 = $(this.opts.wrap)[1];
+// 			this.box3 = $(this.opts.wrap)[2];
+// 			this.box4 = $(this.opts.wrap)[3];
+// 			this.box5 = $(this.opts.wrap)[4];
+// 			this.box6 = $(this.opts.wrap)[5];
+// 			this.box7 = $(this.opts.wrap)[6];
+// 			this.box8 = $(this.opts.wrap)[7];
+// 			this.box1Btn = $(this.box1).find(this.opts.viewBtn);
+// 			this.box2Btn = $(this.box2).find(this.opts.viewBtn);
+// 			this.box3Btn = $(this.box3).find(this.opts.viewBtn);
+// 			this.box4Btn = $(this.box4).find(this.opts.viewBtn);
+// 			this.box5Btn = $(this.box5).find(this.opts.viewBtn);
+// 			this.box6Btn = $(this.box6).find(this.opts.viewBtn);
+// 			this.box7Btn = $(this.box7).find(this.opts.viewBtn);
+// 			this.box8Btn = $(this.box8).find(this.opts.viewBtn);
+// 		},
+// 		bindEvents : function () {
+// 			this.box1Btn.on('click', $.proxy(this.onClickFunc1, this));
+// 			this.box2Btn.on('click', $.proxy(this.onClickFunc2, this));
+// 			this.box3Btn.on('click', $.proxy(this.onClickFunc3, this));
+// 			this.box4Btn.on('click', $.proxy(this.onClickFunc4, this));
+// 			this.box5Btn.on('click', $.proxy(this.onClickFunc5, this));
+// 			this.box6Btn.on('click', $.proxy(this.onClickFunc6, this));
+// 			this.box7Btn.on('click', $.proxy(this.onClickFunc7, this));
+// 			this.box8Btn.on('click', $.proxy(this.onClickFunc8, this));
+// 		},
+// 		onClickFunc1 : function () {
+// 			$(this.box1).find(this.opts.contBox).children().css(this.opts.bgElement, this.opts.bgColor);
+// 		},
+// 		onClickFunc2 : function () {
+// 			$(this.box2).find('span').css(this.opts.bgElement, this.opts.bgColor);
+// 		},
+// 		onClickFunc3 : function () {
+// 			$(this.box3).find('em span').css(this.opts.bgElement, this.opts.bgColor);
+// 		},
+// 		onClickFunc4 : function () {
+// 			$(this.box4).find('div > span').css(this.opts.bgElement, this.opts.bgColor);
+// 			$(this.box4).find('em > span').css(this.opts.bgElement, this.opts.bgColor);
+// 		},
+// 		onClickFunc5 : function () {
+// 			$(this.box5).find('.exam_q div').siblings('p').css(this.opts.bgElement, this.opts.bgColor);
+// 		},
+// 		onClickFunc6 : function () {
+// 			$(this.box6).find('.exam_q div').siblings('span').css(this.opts.bgElement, this.opts.bgColor);
+// 		},
+// 		onClickFunc7 : function () {
+// 			$(this.box7).find(this.opts.activeClass).css(this.opts.bgElement, this.opts.bgColor);
+// 		},
+// 		onClickFunc8 : function () {
+// 			$(this.box8).find(this.opts.activeId).css(this.opts.bgElement, this.opts.bgColor);
+// 		}
+// 	};
+
+// 	$.fn.examInit = function (args) {
+//         var returnLengths = new win.exam.examObj1;
+//     }
+
+// 	$(function () {
+//         $('.exam_wrap').examInit();
+//     });
+// })(window, window.jQuery);
+</script>
+</body>
+</html>

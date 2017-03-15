@@ -143,16 +143,14 @@ $(function(){
 				if(currentIndex >= box.length) {
 					currentIndex = 0;
 				};
-				box.eq(oldIndex).css('background', '');
-				box.eq(currentIndex).css('background', 'yellow');
 			}else if(_this.hasClass('btn_minus')) {
 				currentIndex--;
 				if(currentIndex < 0) {
 					currentIndex = box.length - 1;
 				};
-				box.eq(oldIndex).css('background', '');
-				box.eq(currentIndex).css('background', 'yellow');
 			};
+			box.eq(oldIndex).css('background', '');
+			box.eq(currentIndex).css('background', 'yellow');
 			oldIndex = currentIndex;
 		};
 		activeBtn.on('click', clickFunc);
@@ -173,16 +171,14 @@ $(function(){
 				if(currentIndex >= box.length) {
 					currentIndex = 0;
 				};
-				box.eq(oldIndex).removeClass('active');
-				box.eq(currentIndex).addClass('active');
 			}else if(_this.hasClass('btn_minus')) {
 				currentIndex--;
 				if(currentIndex < 0) {
 					currentIndex = box.length - 1;
 				};
-				box.eq(oldIndex).removeClass('active');
-				box.eq(currentIndex).addClass('active');
 			};
+			box.eq(oldIndex).removeClass('active');
+			box.eq(currentIndex).addClass('active');
 			oldIndex = currentIndex;
 		};
 		activeBtn.on('click', clickFunc);

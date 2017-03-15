@@ -100,7 +100,7 @@ $(function(){
 	var obj1 = function () {
 		var wrap = container.eq(0),
 			btnPlus = wrap.find('.btn_plus'),
-			box = wrap.find('ul > li'),
+			box = wrap.find('ul').children(),
 			currentIndex = 0;
 
 		var plusFunc = function () {
@@ -115,7 +115,7 @@ $(function(){
 	var obj2 = function () {
 		var wrap = container.eq(1),
 			btnMinus = wrap.find('.btn_minus'),
-			box = wrap.find('ul > li'),
+			box = wrap.find('ul').children(),
 			currentIndex = box.length;
 
 		var minusFunc = function () {
@@ -131,7 +131,7 @@ $(function(){
 		var wrap = container.eq(2),
 			btnPlus = wrap.find('.btn_plus'),
 			btnMinus = wrap.find('.btn_minus'),
-			box = wrap.find('ul > li'),
+			box = wrap.find('ul').children(),
 			currentIndex = 0,
 			oldIndex = currentIndex;
 
@@ -163,7 +163,7 @@ $(function(){
 		var wrap = container.eq(3),
 			btnPlus = wrap.find('.btn_plus'),
 			btnMinus = wrap.find('.btn_minus'),
-			box = wrap.find('ul > li'),
+			box = wrap.find('ul').children(),
 			currentIndex = 0,
 			oldIndex = currentIndex;
 

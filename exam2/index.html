@@ -95,6 +95,8 @@
 <script src="../js/libs/jquery-1.12.4.min.js"></script>
 <script>
 $(function(){
+	'use strict';
+
 	var container = $('.exam_wrap');
 
 	var obj1 = function () {
@@ -129,65 +131,61 @@ $(function(){
 
 	var obj3 = function () {
 		var wrap = container.eq(2),
-			btnPlus = wrap.find('.btn_plus'),
-			btnMinus = wrap.find('.btn_minus'),
+			activeBtn = wrap.find('button'),
 			box = wrap.find('ul').children(),
 			currentIndex = 0,
 			oldIndex = currentIndex;
 
-		var plusFunc = function () {
-			currentIndex++;
-			if(currentIndex >= box.length) {
-				currentIndex = 0;
+		var clickFunc = function () {
+			var _this = $(this);
+			if(_this.hasClass('btn_plus')) {
+				currentIndex++;
+				if(currentIndex >= box.length) {
+					currentIndex = 0;
+				};
+				box.eq(oldIndex).css('background', '');
+				box.eq(currentIndex).css('background', 'yellow');
+			}else if(_this.hasClass('btn_minus')) {
+				currentIndex--;
+				if(currentIndex < 0) {
+					currentIndex = box.length - 1;
+				};
+				box.eq(oldIndex).css('background', '');
+				box.eq(currentIndex).css('background', 'yellow');
 			};
-			box.eq(oldIndex).css('background', '');
-			box.eq(currentIndex).css('background', 'yellow');
 			oldIndex = currentIndex;
 		};
-
-		var minusFunc = function () {
-			currentIndex--;
-			if(currentIndex < 0) {
-				currentIndex = box.length - 1;
-			};
-			box.eq(oldIndex).css('background', '');
-			box.eq(currentIndex).css('background', 'yellow');
-			oldIndex = currentIndex;
-		};
-		btnPlus.on('click', plusFunc);
-		btnMinus.on('click', minusFunc);
+		activeBtn.on('click', clickFunc);
 	}
 	obj3();
 
 	var obj4 = function () {
 		var wrap = container.eq(3),
-			btnPlus = wrap.find('.btn_plus'),
-			btnMinus = wrap.find('.btn_minus'),
+			activeBtn = wrap.find('button'),
 			box = wrap.find('ul').children(),
 			currentIndex = 0,
 			oldIndex = currentIndex;
 
-		var plusFunc = function () {
-			currentIndex++;
-			if(currentIndex >= box.length) {
-				currentIndex = 0;
+		var clickFunc = function () {
+			var _this = $(this);
+			if(_this.hasClass('btn_plus')) {
+				currentIndex++;
+				if(currentIndex >= box.length) {
+					currentIndex = 0;
+				};
+				box.eq(oldIndex).removeClass('active');
+				box.eq(currentIndex).addClass('active');
+			}else if(_this.hasClass('btn_minus')) {
+				currentIndex--;
+				if(currentIndex < 0) {
+					currentIndex = box.length - 1;
+				};
+				box.eq(oldIndex).removeClass('active');
+				box.eq(currentIndex).addClass('active');
 			};
-			box.eq(oldIndex).removeClass('active').css('background', '');
-			box.eq(currentIndex).addClass('active').css('background', 'yellow');
 			oldIndex = currentIndex;
 		};
-
-		var minusFunc = function () {
-			currentIndex--;
-			if(currentIndex < 0) {
-				currentIndex = box.length - 1;
-			};
-			box.eq(oldIndex).removeClass('active').css('background', '');
-			box.eq(currentIndex).addClass('active').css('background', 'yellow');
-			oldIndex = currentIndex;
-		};
-		btnPlus.on('click', plusFunc);
-		btnMinus.on('click', minusFunc);
+		activeBtn.on('click', clickFunc);
 	};
 	obj4();
 });

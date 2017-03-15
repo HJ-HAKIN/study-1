@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Index</title>
+<link rel="stylesheet" href="common.css" />
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>Q. 처음부터 순서대로 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<ul>
+					<li>one</li>
+					<li>two</li>
+					<li>three</li>
+					<li>four</li>
+					<li>five</li>
+					<li>six</li>
+					<li>seven</li>
+					<li>eight</li>
+				</ul>
+			</div>
+			<button type="button" class="btn_plus">plus</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 마지막부터 역순대로 일치하게 하시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<ul>
+					<li>one</li>
+					<li>two</li>
+					<li>three</li>
+					<li>four</li>
+					<li>five</li>
+					<li>six</li>
+					<li>seven</li>
+				</ul>
+			</div>
+			<button type="button" class="btn_minus">minus</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>Q. 순서대로 일치하게 하시고, 바로 전에 일치됐던 엘리먼트는 색을 지우시오.</h1>
+			<div class="exam_q"><!-- 부모 -->
+				<ul>
+					<li style="background-color:yellow">one</li>
+					<li>two</li>
+					<li>three</li>
+					<li>four</li>
+					<li>five</li>
+					<li>six</li>
+					<li>seven</li>
+					<li>eight</li>
+					<li>nine</li>
+				</ul>
+			</div>
+			<button type="button" class="btn_plus">plus</button>
+			<button type="button" class="btn_minus">minus</button>
+		</div>
+        <div class="exam_wrap">
+            <h1>Q. 순서대로 일치하게 하시고, 바로 전에 일치됐던 엘리먼트는 색을 지우시오.(클래스 제어)</h1>
+            <div class="exam_q"><!-- 부모 -->
+                <ul>
+                    <li class="active">one</li>
+                    <li>two</li>
+                    <li>three</li>
+                    <li>four</li>
+                    <li>five</li>
+                    <li>six</li>
+                    <li>seven</li>
+                    <li>eight</li>
+                    <li>nine</li>
+                </ul>
+            </div>
+            <button type="button" class="btn_plus">plus</button>
+            <button type="button" class="btn_minus">minus</button>
+        </div>
+	</div>
+	<!-- container [e] -->
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+</div>
+<!-- wrapper [e] -->
+<script src="../js/libs/jquery-1.12.4.min.js"></script>
+<script>
+$(function(){
+	var container = $('.exam_wrap');
+
+	var obj1 = function () {
+		var wrap = container.eq(0),
+			btnPlus = wrap.find('.btn_plus'),
+			box = wrap.find('ul > li'),
+			currentIndex = 0;
+
+		var plusFunc = function () {
+			if(currentIndex === box.length) return;
+			box.eq(currentIndex).css('background', 'yellow');
+			currentIndex++;
+		};
+		btnPlus.on('click', plusFunc);
+	};
+	obj1();
+
+	var obj2 = function () {
+		var wrap = container.eq(1),
+			btnMinus = wrap.find('.btn_minus'),
+			box = wrap.find('ul > li'),
+			currentIndex = box.length;
+
+		var minusFunc = function () {
+			if(currentIndex <= 0) return;
+			currentIndex--;
+			box.eq(currentIndex).css('background', 'yellow');
+		};
+		btnMinus.on('click', minusFunc);
+	};
+	obj2();
+
+	var obj3 = function () {
+		var wrap = container.eq(2),
+			btnPlus = wrap.find('.btn_plus'),
+			btnMinus = wrap.find('.btn_minus'),
+			box = wrap.find('ul > li'),
+			currentIndex = 0,
+			oldIndex = currentIndex;
+
+		var plusFunc = function () {
+			currentIndex++;
+			if(currentIndex >= box.length) {
+				currentIndex = 0;
+			};
+			box.eq(oldIndex).css('background', '');
+			box.eq(currentIndex).css('background', 'yellow');
+			oldIndex = currentIndex;
+		};
+
+		var minusFunc = function () {
+			currentIndex--;
+			if(currentIndex < 0) {
+				currentIndex = box.length - 1;
+			};
+			box.eq(oldIndex).css('background', '');
+			box.eq(currentIndex).css('background', 'yellow');
+			oldIndex = currentIndex;
+		};
+		btnPlus.on('click', plusFunc);
+		btnMinus.on('click', minusFunc);
+	}
+	obj3();
+
+	var obj4 = function () {
+		var wrap = container.eq(3),
+			btnPlus = wrap.find('.btn_plus'),
+			btnMinus = wrap.find('.btn_minus'),
+			box = wrap.find('ul > li'),
+			currentIndex = 0,
+			oldIndex = currentIndex;
+
+		var plusFunc = function () {
+			currentIndex++;
+			if(currentIndex >= box.length) {
+				currentIndex = 0;
+			};
+			box.eq(oldIndex).removeClass('active').css('background', '');
+			box.eq(currentIndex).addClass('active').css('background', 'yellow');
+			oldIndex = currentIndex;
+		};
+
+		var minusFunc = function () {
+			currentIndex--;
+			if(currentIndex < 0) {
+				currentIndex = box.length - 1;
+			};
+			box.eq(oldIndex).removeClass('active').css('background', '');
+			box.eq(currentIndex).addClass('active').css('background', 'yellow');
+			oldIndex = currentIndex;
+		};
+		btnPlus.on('click', plusFunc);
+		btnMinus.on('click', minusFunc);
+	};
+	obj4();
+});
+</script>
+</body>
+</html>

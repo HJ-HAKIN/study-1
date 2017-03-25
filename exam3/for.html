@@ -56,98 +56,97 @@ ul:first-child{margin-left:0}
 
     var UTIL = win.examProject.common.util;
 
-    var defParams = {
-    	wrap : '.exam_list',
-    	listParent : '<ul>',
-    	listParentClose : '</ul>',
-    	listChild : '<li>',
-    	listChildClose : '</li>'
-    };
-
-    var obj1 = {
-    	init : function () {
-    		this.setElements();
-    		this.setTags();
-    	},
-    	setElements : function (args) {
-    		if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
-            this.wrap = $(this.opts.wrap).eq(0);
-            this.listLength = 5;
-    	},
-    	setTags : function () {
-    		var tags = [];
-    		tags.push(this.opts.listParent);
-    		for (var i = 0, max = this.listLength; i < max; i++) {
-	    		tags.push(this.opts.listChild);
-    			if (i % 2 === 0) {
-	    			tags.push('<input type="checkbox" id="box' + (i + 1) + '">');
-	    			tags.push('<label for="box' + (i + 1) + '">');
-	    			tags.push('박스' + (i + 1));
-                    tags.push('</label>');
-                } else {
-                    tags.push('<input type="text" placeholder="박스' + (i + 1) + '">');
-                }
-	    		tags.push(this.opts.listChildClose);
-    		}
-    		tags.push(this.opts.listParentClose);
-    		this.wrap.get(0).innerHTML = tags.join('');
-    	}
-    };
-
-    var obj2 = {
-    	init : function () {
-    		this.setElements();
-    		this.setTags();
-    	},
-    	setElements : function (args) {
-    		if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
-            this.wrap = $(this.opts.wrap).eq(1);
-            this.listLength = 10;
-    	},
-    	setTags : function () {
-    		var tags = [];
-    		tags += this.opts.listParent;
-    		for (var i = 1, max = this.listLength; i < max; i++) {
-    			tags += this.opts.listChild;
-    			tags += '7' + ' x ' + i + ' = ' + (7 * i);
-    			tags += this.opts.listChildClose;
-    		}
-    		tags += this.opts.listParentClose;
-    		this.wrap.get(0).innerHTML = tags;
-    	}
-    };
-
-    var obj3 = {
-    	init : function () {
-    		this.setElements();
-    		this.setTags();
-    	},
-    	setElements : function (args) {
-    		if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
-            this.wrap = $(this.opts.wrap).eq(2);
-            this.listLength = 10;
-    	},
-    	setTags : function () {
-    		var tags = [];
-    		for (var i = 1, max = this.listLength; i < max; i++) {
-    			tags.push(this.opts.listParent);
-    			for (var j = 1, max = this.listLength; j < max; j++) {
-    				tags.push(this.opts.listChild);
-    				tags.push(i + ' x ' + j + ' = ' + (i * j));
-					tags.push(this.opts.listChildClose);
-    			}
-				tags.push(this.opts.listParentClose);
-    		}
-    		this.wrap.get(0).innerHTML = tags.join('');
-    	}
-    };
-
     $(function () {
+        var defParams = {
+            wrap : '.exam_list',
+            listParent : '<ul>',
+            listParentClose : '</ul>',
+            listChild : '<li>',
+            listChildClose : '</li>'
+        };
+
+        var obj1 = {
+            init : function () {
+                this.setElements();
+                this.setTags();
+            },
+            setElements : function (args) {
+                if (!(this.obj = $(defParams.wrap)).length) return;
+                this.opts = UTIL.def(defParams, (args || {}));
+                this.wrap = $(this.opts.wrap).eq(0);
+                this.listLength = 5;
+            },
+            setTags : function () {
+                var tags = [];
+                tags.push(this.opts.listParent);
+                for (var i = 0, max = this.listLength; i < max; i++) {
+                    tags.push(this.opts.listChild);
+                    if (i % 2 === 0) {
+                        tags.push('<input type="checkbox" id="box' + (i + 1) + '">');
+                        tags.push('<label for="box' + (i + 1) + '">');
+                        tags.push('박스' + (i + 1));
+                        tags.push('</label>');
+                    } else {
+                        tags.push('<input type="text" placeholder="박스' + (i + 1) + '">');
+                    }
+                    tags.push(this.opts.listChildClose);
+                }
+                tags.push(this.opts.listParentClose);
+                this.wrap.get(0).innerHTML = tags.join('');
+            }
+        };
         obj1.init();
+
+        var obj2 = {
+            init : function () {
+                this.setElements();
+                this.setTags();
+            },
+            setElements : function (args) {
+                if (!(this.obj = $(defParams.wrap)).length) return;
+                this.opts = UTIL.def(defParams, (args || {}));
+                this.wrap = $(this.opts.wrap).eq(1);
+                this.listLength = 10;
+            },
+            setTags : function () {
+                var tags = [];
+                tags += this.opts.listParent;
+                for (var i = 1, max = this.listLength; i < max; i++) {
+                    tags += this.opts.listChild;
+                    tags += '7' + ' x ' + i + ' = ' + (7 * i);
+                    tags += this.opts.listChildClose;
+                }
+                tags += this.opts.listParentClose;
+                this.wrap.get(0).innerHTML = tags;
+            }
+        };
         obj2.init();
+
+        var obj3 = {
+            init : function () {
+                this.setElements();
+                this.setTags();
+            },
+            setElements : function (args) {
+                if (!(this.obj = $(defParams.wrap)).length) return;
+                this.opts = UTIL.def(defParams, (args || {}));
+                this.wrap = $(this.opts.wrap).eq(2);
+                this.listLength = 10;
+            },
+            setTags : function () {
+                var tags = [];
+                for (var i = 1, max = this.listLength; i < max; i++) {
+                    tags.push(this.opts.listParent);
+                    for (var j = 1, max = this.listLength; j < max; j++) {
+                        tags.push(this.opts.listChild);
+                        tags.push(i + ' x ' + j + ' = ' + (i * j));
+                        tags.push(this.opts.listChildClose);
+                    }
+                    tags.push(this.opts.listParentClose);
+                }
+                this.wrap.get(0).innerHTML = tags.join('');
+            }
+        };
         obj3.init();
     });
 

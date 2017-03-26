@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* HIVELAB (http://www.hivelab.co.kr) */
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}
+body{font-family: "Nanum Gothic", sans-serif}
+hr{display:none}
+a{text-decoration:none}
+
+/* index */
+.index:after{display:block;clear:both;content:''}
+.index .lnb{width:200px;float:left}
+.index h1{font-size:14px}
+.index section{margin-top:20px}
+.index ul{margin:10px 0 0;padding:5px 30px;background:#f7f7f7}
+.index ul li{margin-top:10px;font-size:12px}
+.index ul li:first-child{margin-top:0}
+.index ul li a{color:#000}
+.content{overflow:hidden;padding:20px}
+
+/* exam1 */
+.exam1 .exam_wrap{padding:10px 0}
+.exam1 .exam_wrap h1{margin:5px 0;font-size:1em}
+.exam1 .exam_wrap div div,
+.exam1 .exam_wrap div p,
+.exam1 .exam_wrap div span,
+.exam1 .exam_wrap div em{border:1px solid green}
+
+/* exam2 */
+.exam2 li,.exam2 ul{list-style:none;margin:0;padding:0}
+.exam2 .exam_wrap{padding:10px 0}
+.exam2 .exam_wrap h1{margin:5px 0;font-size:1em}
+.exam2 .exam_q ul{zoom:1}
+.exam2 .exam_q ul:after{display:block;clear:both;content:''}
+.exam2 .exam_q ul li{float:left;width:100px;margin-left:-1px;padding:5px 0;border:1px solid #ccc;text-align:center}
+.exam2 .exam_q ul li:first-child{margin-left:0}
+.exam2 .exam_q ul li.active{background:yellow}
+
+/* exam3 */
+.exam3 li,.exam3 ul{list-style:none;margin:0;padding:0}
+.exam3 .exam_wrap{padding:10px 0}
+.exam3 .exam_wrap h1{margin:5px 0;font-size:1em}
+.exam3 .exam_list ul{float:left;margin-left:20px}
+.exam3 .exam_list ul:after{display:block;clear:both;content:''}
+.exam3 .exam_list ul:first-child{margin-left:0}

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>JS 과제 산출물</title>
-<style>
-body{font-size:14px;line-height:1.5}
-h1,h2,h3,h4,h5,h6{font-size:14px}
-</style>
+<link rel="stylesheet" href="common/css/common.css">
+<!--[if lt IE 9]>
+<script src="common/js/libs/html5shiv.min.js"></script>
+<![endif]-->
 </head>
 <body>
 <!-- wrapper [s] -->
@@ -16,45 +16,87 @@ h1,h2,h3,h4,h5,h6{font-size:14px}
 	<!-- header [e] -->
 	<hr />
 	<!-- container [s] -->
-	<div id="container">
-		<section>
-			<h1>exam1</h1>
-			<ul>
-				<li><a href="exam1/selector_javascript.html" target="_blank">selector_javascript</a></li>
-				<li><a href="exam1/selector_jQuery.html" target="_blank">selector_jQuery</a></li>
-				<li><a href="exam1/selector2_javascript.html" target="_blank">selector2_javascript</a></li>
-				<li><a href="exam1/selector2_jQuery.html" target="_blank">selector2_jQuery</a></li>
-				<li><a href="exam1/selector_issus_js.html" target="_blank">javasciprt 선택자 이슈</a></li>
-			</ul>
-		</section>
+	<div class="index">
+		<div class="lnb">
+			<section>
+				<h1>1. jQuery 맛보기, 자바스크립트 소개 (2017/03/09)</h1>
+				<ul class="page">
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam1/selector_javascript.html">selector_javascript</a></li>
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam1/selector_jQuery.html">selector_jQuery</a></li>
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam1/selector2_javascript.html">selector2_javascript</a></li>
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam1/selector2_jQuery.html">selector2_jQuery</a></li>
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam1/selector_issus_js.html">javasciprt 선택자 이슈</a></li>
+				</ul>
+			</section>
 
-		<section>
-			<h1>exam2</h1>
-			<ul>
-				<li><a href="exam2/index.html" target="_blank">index.html</a></li>
-			</ul>
-		</section>
+			<section>
+				<h1>2. 비교조건문 (2017/03/13)</h1>
+				<ul class="page">
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam2/index.html">index.html</a></li>
+				</ul>
+			</section>
 
-		<section>
-			<h1>exam3</h1>
-			<ul>
-				<li><a href="exam3/for.html" target="_blank">for.html</a></li>
-			</ul>
-		</section>
+			<section>
+				<h1>3. 반복문 (2017/03/16 ~ 20)</h1>
+				<ul class="page">
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam3/for.html">for.html</a></li>
+				</ul>
+			</section>
 
-		<section>
-			<h1>exam4</h1>
-			<ul>
-				<li><a href="exam4/index/index.html" target="_blank">index.html</a></li>
-				<li><a href="exam4/for/for.html" target="_blank">for.html</a></li>
-			</ul>
-		</section>
+			<section>
+				<h1>4. 함수와 객체 (2017/03/23)</h1>
+				<ul class="page">
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam4/index/index.html">index.html</a></li>
+					<li><a href="#" data-url="https://realyuki.github.io/study/exam4/for/for.html">for.html</a></li>
+				</ul>
+			</section>
+		</div>
+		<div class="content">
+
+		</div>
 	</div>
 	<!-- container [e] -->
 	<hr />
 	<!-- footer [s] -->
-	<div id="footer">@</div>
+	<div id="footer"></div>
 	<!-- footer [e] -->
 </div>
+<!-- [ Javascript Area ] -->
+<!-- Libs -->
+<script src="common/js/libs/jquery-1.12.4.min.js"></script>
+<!-- Apps -->
+<script src="common/js/apps/common.js"></script>
+<script>
+(function (win, $) {
+	'use strict';
+
+    var pageLode = {
+    	init : function () {
+    		this.setElemetns();
+    		this.bindEvents();
+    	},
+    	setElemetns : function () {
+    		this.lists = $('.page').children();
+    		this.listsAnchor = this.lists.find('a');
+    	},
+    	bindEvents : function () {
+    		this.lists.on('click', '>a', $.proxy(this.setPage, this));
+    		
+    	},
+    	setPage : function (e) {
+    		var _target = $(e.currentTarget),
+    			urlData = _target.data('url');
+    			$('.content').empty();
+    		$.ajax ({
+    			url : urlData,
+    			success : function (data) {
+    				$('.content').append(data);
+    			}
+    		})
+    	}
+    };
+    pageLode.init();
+})(window, window.jQuery);
+</script>
 </body>
 </html>

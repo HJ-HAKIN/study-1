@@ -1,3 +1,7 @@
+# Note
+* on() / off() : Data가 나중에 들어와도 항상 DOM을 탐색한다. (개발로 코드가 들어가서, 개발자도구에서 보이지 않는 경우)
+* bind() /unbind() : Data를 탐색하지 못한다.
+
 # point
 ```html
 <script src="http://code.jquery.com/jquery-latest.js"></script>

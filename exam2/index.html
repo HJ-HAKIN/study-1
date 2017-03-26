@@ -208,7 +208,7 @@
         },
         minusFunc : function () {
             this.currentIndex--;
-            if (this.currentIndex === 0) {
+            if (this.currentIndex < 0) {
                 this.currentIndex = this.listChild.length - 1;
             };
             this.setBox();
@@ -252,7 +252,7 @@
         },
         minusFunc : function () {
             this.currentIndex--;
-            if (this.currentIndex === 0) {
+            if (this.currentIndex < 0) {
                 this.currentIndex = this.listChild.length - 1;
             };
             this.setBox();

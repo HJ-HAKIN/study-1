@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>exam</title>
+<link rel="stylesheet" href="common.css">
+<style>
+ul{float:left;margin-left:20px}
+ul:first-child{margin-left:0}
+.exam_list:after{display:block;clear:both;content:''}
+</style>
+</head>
+<body>
+<!-- wrapper [s] -->
+<div id="wrapper">
+	<!-- header [s] -->
+	<div id="header">
+	</div>
+	<!-- header [e] -->
+	<hr />
+	<!-- container [s] -->
+	<div id="container">
+		<div class="exam_wrap">
+			<h1>1. 5개의 input 중 짝수는 text / 홀수는 checkbox 를 만들어보기</h1>
+			<div class="exam_list"></div>
+            <button type="button" class="btn_view">View</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>2. 구구단 7단을 반복문을 이용해 만들어보기</h1>
+			<div class="exam_list"></div>
+            <button type="button" class="btn_view">View</button>
+		</div>
+		<div class="exam_wrap">
+			<h1>3. 반복문 for/while 문을 이용해 모든 구구단 만들어보기</h1>
+			<div class="exam_list"></div>
+            <button type="button" class="btn_view">View</button>
+		</div>
+	</div>
+	<!-- container [e] -->
+	<hr />
+	<!-- footer [s] -->
+	<div id="footer">
+	</div>
+	<!-- footer [e] -->
+</div>
+<!-- wrapper [e] -->
+<!-- [ Javascript Area ] -->
+<!-- Libs -->
+<script src="../../common/js/libs/jquery-1.12.4.min.js"></script>
+<!-- Apps -->
+<script src="../../common/js/apps/common.js"></script>
+<script>
+(function (win, $) {
+    'use strict';
+    win.examProject = win.examProject || {};
+    win.examProject.common = win.examProject.common || {};
+
+    var UTIL = win.examProject.common.util;
+
+    var defParams = {
+    	wrap : '.exam_wrap',
+        objBox : '.exam_list',
+        btnView : '.btn_view',
+    	listParent : '<ul>',
+    	listParentClose : '</ul>',
+    	listChild : '<li>',
+    	listChildClose : '</li>'
+    };
+
+    var obj1 = {
+    	init : function () {
+    		this.setElements();
+    		this.bindEvents();
+    	},
+    	setElements : function (args) {
+    		if (!(this.obj = $(defParams.wrap)).length) return;
+            this.opts = UTIL.def(defParams, (args || {}));
+            this.wrap = $(this.opts.wrap).eq(0);
+            this.box = this.wrap.find(this.opts.objBox);
+            this.toggleBtn = this.wrap.find(this.opts.btnView);
+            this.listLength = 5;
+    	},
+        bindEvents : function () {
+            this.toggleBtn.on('click', $.proxy(this.setTags, this));
+        },
+    	setTags : function () {
+    		var tags = [];
+    		tags.push(this.opts.listParent);
+    		for (var i = 0, max = this.listLength; i < max; i++) {
+	    		tags.push(this.opts.listChild);
+    			if (i % 2 === 0) {
+	    			tags.push('<input type="checkbox" id="box' + (i + 1) + '">');
+	    			tags.push('<label for="box' + (i + 1) + '">');
+	    			tags.push('박스' + (i + 1));
+                    tags.push('</label>');
+                } else {
+                    tags.push('<input type="text" placeholder="박스' + (i + 1) + '">');
+                }
+	    		tags.push(this.opts.listChildClose);
+    		}
+    		tags.push(this.opts.listParentClose);
+    		this.box.get(0).innerHTML = tags.join('');
+    	}
+    };
+
+    var obj2 = {
+    	init : function () {
+    		this.setElements();
+    		this.bindEvents();
+    	},
+    	setElements : function (args) {
+    		if (!(this.obj = $(defParams.wrap)).length) return;
+            this.opts = UTIL.def(defParams, (args || {}));
+            this.wrap = $(this.opts.wrap).eq(1);
+            this.box = this.wrap.find(this.opts.objBox);
+            this.toggleBtn = this.wrap.find(this.opts.btnView);
+            this.listLength = 10;
+    	},
+        bindEvents : function () {
+            this.toggleBtn.on('click', $.proxy(this.setTags, this));
+        },
+    	setTags : function () {
+    		var tags = [];
+    		tags += this.opts.listParent;
+    		for (var i = 1, max = this.listLength; i < max; i++) {
+    			tags += this.opts.listChild;
+    			tags += '7' + ' x ' + i + ' = ' + (7 * i);
+    			tags += this.opts.listChildClose;
+    		}
+    		tags += this.opts.listParentClose;
+    		this.box.get(0).innerHTML = tags;
+    	}
+    };
+
+    var obj3 = {
+    	init : function () {
+    		this.setElements();
+    		this.bindEvents();
+    	},
+    	setElements : function (args) {
+    		if (!(this.obj = $(defParams.wrap)).length) return;
+            this.opts = UTIL.def(defParams, (args || {}));
+            this.wrap = $(this.opts.wrap).eq(2);
+            this.box = this.wrap.find(this.opts.objBox);
+            this.toggleBtn = this.wrap.find(this.opts.btnView);
+            this.listLength = 10;
+    	},
+        bindEvents : function () {
+            this.toggleBtn.on('click', $.proxy(this.setTags, this));
+        },
+    	setTags : function () {
+    		var tags = [];
+    		for (var i = 1, max = this.listLength; i < max; i++) {
+    			tags.push(this.opts.listParent);
+    			for (var j = 1, max = this.listLength; j < max; j++) {
+    				tags.push(this.opts.listChild);
+    				tags.push(i + ' x ' + j + ' = ' + (i * j));
+					tags.push(this.opts.listChildClose);
+    			}
+				tags.push(this.opts.listParentClose);
+    		}
+    		this.box.get(0).innerHTML = tags.join('');
+    	}
+    };
+
+    $(function () {
+        obj1.init();
+        obj2.init();
+        obj3.init();
+    });
+
+})(window, window.jQuery);
+</script>
+</body>
+</html>

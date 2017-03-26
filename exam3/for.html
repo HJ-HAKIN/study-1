@@ -24,14 +24,17 @@ ul:first-child{margin-left:0}
 		<div class="exam_wrap">
 			<h1>1. 5개의 input 중 짝수는 text / 홀수는 checkbox 를 만들어보기</h1>
 			<div class="exam_list"></div>
+            <button type="button" class="btn_view">View</button>
 		</div>
 		<div class="exam_wrap">
 			<h1>2. 구구단 7단을 반복문을 이용해 만들어보기</h1>
 			<div class="exam_list"></div>
+            <button type="button" class="btn_view">View</button>
 		</div>
 		<div class="exam_wrap">
 			<h1>3. 반복문 for/while 문을 이용해 모든 구구단 만들어보기</h1>
 			<div class="exam_list"></div>
+            <button type="button" class="btn_view">View</button>
 		</div>
 	</div>
 	<!-- container [e] -->
@@ -56,7 +59,9 @@ ul:first-child{margin-left:0}
     var UTIL = win.examProject.common.util;
 
     var defParams = {
-    	wrap : '.exam_list',
+    	wrap : '.exam_wrap',
+        objBox : '.exam_list',
+        btnView : '.btn_view',
     	listParent : '<ul>',
     	listParentClose : '</ul>',
     	listChild : '<li>',
@@ -66,14 +71,19 @@ ul:first-child{margin-left:0}
     var obj1 = {
     	init : function () {
     		this.setElements();
-    		this.setTags();
+    		this.bindEvents();
     	},
     	setElements : function (args) {
     		if (!(this.obj = $(defParams.wrap)).length) return;
             this.opts = UTIL.def(defParams, (args || {}));
             this.wrap = $(this.opts.wrap).eq(0);
+            this.box = this.wrap.find(this.opts.objBox);
+            this.toggleBtn = this.wrap.find(this.opts.btnView);
             this.listLength = 5;
     	},
+        bindEvents : function () {
+            this.toggleBtn.on('click', $.proxy(this.setTags, this));
+        },
     	setTags : function () {
     		var tags = [];
     		tags.push(this.opts.listParent);
@@ -90,21 +100,26 @@ ul:first-child{margin-left:0}
 	    		tags.push(this.opts.listChildClose);
     		}
     		tags.push(this.opts.listParentClose);
-    		this.wrap.get(0).innerHTML = tags.join('');
+    		this.box.get(0).innerHTML = tags.join('');
     	}
     };
 
     var obj2 = {
     	init : function () {
     		this.setElements();
-    		this.setTags();
+    		this.bindEvents();
     	},
     	setElements : function (args) {
     		if (!(this.obj = $(defParams.wrap)).length) return;
             this.opts = UTIL.def(defParams, (args || {}));
             this.wrap = $(this.opts.wrap).eq(1);
+            this.box = this.wrap.find(this.opts.objBox);
+            this.toggleBtn = this.wrap.find(this.opts.btnView);
             this.listLength = 10;
     	},
+        bindEvents : function () {
+            this.toggleBtn.on('click', $.proxy(this.setTags, this));
+        },
     	setTags : function () {
     		var tags = [];
     		tags += this.opts.listParent;
@@ -114,21 +129,26 @@ ul:first-child{margin-left:0}
     			tags += this.opts.listChildClose;
     		}
     		tags += this.opts.listParentClose;
-    		this.wrap.get(0).innerHTML = tags;
+    		this.box.get(0).innerHTML = tags;
     	}
     };
 
     var obj3 = {
     	init : function () {
     		this.setElements();
-    		this.setTags();
+    		this.bindEvents();
     	},
     	setElements : function (args) {
     		if (!(this.obj = $(defParams.wrap)).length) return;
             this.opts = UTIL.def(defParams, (args || {}));
             this.wrap = $(this.opts.wrap).eq(2);
+            this.box = this.wrap.find(this.opts.objBox);
+            this.toggleBtn = this.wrap.find(this.opts.btnView);
             this.listLength = 10;
     	},
+        bindEvents : function () {
+            this.toggleBtn.on('click', $.proxy(this.setTags, this));
+        },
     	setTags : function () {
     		var tags = [];
     		for (var i = 1, max = this.listLength; i < max; i++) {
@@ -140,7 +160,7 @@ ul:first-child{margin-left:0}
     			}
 				tags.push(this.opts.listParentClose);
     		}
-    		this.wrap.get(0).innerHTML = tags.join('');
+    		this.box.get(0).innerHTML = tags.join('');
     	}
     };
 

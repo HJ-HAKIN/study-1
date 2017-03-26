@@ -24,18 +24,15 @@ ul:first-child{margin-left:0}
 	<div class="exam3">
 		<div class="exam_wrap">
 			<h1>1. 5개의 input 중 짝수는 text / 홀수는 checkbox 를 만들어보기</h1>
-			<div class="exam_list"></div>
-            <button type="button" class="btn_view">View</button>
+			<div class="exam_q"></div>
 		</div>
 		<div class="exam_wrap">
 			<h1>2. 구구단 7단을 반복문을 이용해 만들어보기</h1>
-			<div class="exam_list"></div>
-            <button type="button" class="btn_view">View</button>
+			<div class="exam_q"></div>
 		</div>
 		<div class="exam_wrap">
 			<h1>3. 반복문 for/while 문을 이용해 모든 구구단 만들어보기</h1>
-			<div class="exam_list"></div>
-            <button type="button" class="btn_view">View</button>
+			<div class="exam_q"></div>
 		</div>
 	</div>
 	<!-- container [e] -->
@@ -52,126 +49,40 @@ ul:first-child{margin-left:0}
 <!-- Apps -->
 <script src="../common/js/apps/common.js"></script>
 <script>
-(function (win, $) {
-    'use strict';
-    win.examProject = win.examProject || {};
-    win.examProject.common = win.examProject.common || {};
+$(function(){
+    var obj1 = $('.exam_q').eq(0),
+        obj2 = $('.exam_q').eq(1),
+        obj3 = $('.exam_q').eq(2)
 
-    var UTIL = win.examProject.common.util;
-
-    var defParams = {
-    	wrap : '.exam_wrap',
-        objBox : '.exam_list',
-        btnView : '.btn_view',
-    	listParent : '<ul>',
-    	listParentClose : '</ul>',
-    	listChild : '<li>',
-    	listChildClose : '</li>'
+    var input = function () {
+        for (var i = 0; i < 5; i++) {
+            if (i % 2 === 1) {
+                obj1.append('<div><input type="text" placeholder="짝수"></div>');
+            } else {
+                obj1.append('<div><input type="checkbox">홀수</div>');
+            }
+        }
     };
+    input();
 
-    var obj1 = {
-    	init : function () {
-    		this.setElements();
-    		this.bindEvents();
-    	},
-    	setElements : function (args) {
-    		if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
-            this.wrap = $(this.opts.wrap).eq(0);
-            this.box = this.wrap.find(this.opts.objBox);
-            this.toggleBtn = this.wrap.find(this.opts.btnView);
-    	},
-        bindEvents : function () {
-            this.toggleBtn.on('click', $.proxy(this.setTags, this));
-        },
-    	setTags : function () {
-    		var tags = [],
-                listLength = 5;
-    		tags.push(this.opts.listParent);
-    		for (var i = 0, max = listLength; i < max; i++) {
-	    		tags.push(this.opts.listChild);
-    			if (i % 2 === 0) {
-	    			tags.push('<input type="checkbox" id="box' + (i + 1) + '">');
-	    			tags.push('<label for="box' + (i + 1) + '">');
-	    			tags.push('박스' + (i + 1));
-                    tags.push('</label>');
-                } else {
-                    tags.push('<input type="text" placeholder="박스' + (i + 1) + '">');
-                }
-	    		tags.push(this.opts.listChildClose);
-    		}
-    		tags.push(this.opts.listParentClose);
-    		this.box.get(0).innerHTML = tags.join('');
-    	}
+    var table1 = function() {
+        for (var i = 1; i < 10; i++) {
+            obj2.append("<div>" + "7" + " x " + i + " = " + 7 * i + "</div>");
+        }
     };
+    table1();
 
-    var obj2 = {
-    	init : function () {
-    		this.setElements();
-    		this.bindEvents();
-    	},
-    	setElements : function (args) {
-    		if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
-            this.wrap = $(this.opts.wrap).eq(1);
-            this.box = this.wrap.find(this.opts.objBox);
-            this.toggleBtn = this.wrap.find(this.opts.btnView);
-    	},
-        bindEvents : function () {
-            this.toggleBtn.on('click', $.proxy(this.setTags, this));
-        },
-    	setTags : function () {
-    		var tags = [],
-                listLength = 10;
-    		tags += this.opts.listParent;
-    		for (var i = 1, max = listLength; i < max; i++) {
-    			tags += this.opts.listChild;
-    			tags += '7' + ' x ' + i + ' = ' + (7 * i);
-    			tags += this.opts.listChildClose;
-    		}
-    		tags += this.opts.listParentClose;
-    		this.box.get(0).innerHTML = tags;
-    	}
-    };
-
-    var obj3 = {
-    	init : function () {
-    		this.setElements();
-    		this.bindEvents();
-    	},
-    	setElements : function (args) {
-    		if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
-            this.wrap = $(this.opts.wrap).eq(2);
-            this.box = this.wrap.find(this.opts.objBox);
-            this.toggleBtn = this.wrap.find(this.opts.btnView);
-    	},
-        bindEvents : function () {
-            this.toggleBtn.on('click', $.proxy(this.setTags, this));
-        },
-    	setTags : function () {
-    		var tags = [],
-                listLength = 10;
-    		for (var i = 1, max = listLength; i < max; i++) {
-    			tags.push(this.opts.listParent);
-    			for (var j = 1, max = listLength; j < max; j++) {
-    				tags.push(this.opts.listChild);
-    				tags.push(i + ' x ' + j + ' = ' + (i * j));
-					tags.push(this.opts.listChildClose);
-    			}
-				tags.push(this.opts.listParentClose);
-    		}
-    		this.box.get(0).innerHTML = tags.join('');
-    	}
-    };
-
-    $(function () {
-        obj1.init();
-        obj2.init();
-        obj3.init();
-    });
-
-})(window, window.jQuery);
+    var table2 = function () {
+        var a = 2;
+        while (a < 10) {
+            for (var i = 1; i < 10; i++) {
+                obj3.append("<div>" + a + " x " + i + " = " + a * i + "</div>");
+            }
+            a++;
+        }
+    }
+    table2();
+});
 </script>
 </body>
 </html>

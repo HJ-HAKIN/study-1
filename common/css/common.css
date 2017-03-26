@@ -7,7 +7,7 @@ src:url(font/NanumGothic.eot);
 src:url(font/NanumGothic.eot?#iefix) format('embedded-opentype'), url(font/NanumGothic.woff) format('woff'),url(font/NanumGothic.ttf) format('truetype');
 }
 h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}
-body{font-family: "Nanum Gothic", sans-serif}
+body{font-family: "Nanum Gothic", sans-serif;font-size:14px}
 hr{display:none}
 a{text-decoration:none}
 

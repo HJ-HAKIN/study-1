@@ -79,15 +79,15 @@ ul:first-child{margin-left:0}
             this.wrap = $(this.opts.wrap).eq(0);
             this.box = this.wrap.find(this.opts.objBox);
             this.toggleBtn = this.wrap.find(this.opts.btnView);
-            this.listLength = 5;
     	},
         bindEvents : function () {
             this.toggleBtn.on('click', $.proxy(this.setTags, this));
         },
     	setTags : function () {
-    		var tags = [];
+    		var tags = [],
+                listLength = 5;
     		tags.push(this.opts.listParent);
-    		for (var i = 0, max = this.listLength; i < max; i++) {
+    		for (var i = 0, max = listLength; i < max; i++) {
 	    		tags.push(this.opts.listChild);
     			if (i % 2 === 0) {
 	    			tags.push('<input type="checkbox" id="box' + (i + 1) + '">');
@@ -115,15 +115,15 @@ ul:first-child{margin-left:0}
             this.wrap = $(this.opts.wrap).eq(1);
             this.box = this.wrap.find(this.opts.objBox);
             this.toggleBtn = this.wrap.find(this.opts.btnView);
-            this.listLength = 10;
     	},
         bindEvents : function () {
             this.toggleBtn.on('click', $.proxy(this.setTags, this));
         },
     	setTags : function () {
-    		var tags = [];
+    		var tags = [],
+                listLength = 10;
     		tags += this.opts.listParent;
-    		for (var i = 1, max = this.listLength; i < max; i++) {
+    		for (var i = 1, max = listLength; i < max; i++) {
     			tags += this.opts.listChild;
     			tags += '7' + ' x ' + i + ' = ' + (7 * i);
     			tags += this.opts.listChildClose;
@@ -144,16 +144,16 @@ ul:first-child{margin-left:0}
             this.wrap = $(this.opts.wrap).eq(2);
             this.box = this.wrap.find(this.opts.objBox);
             this.toggleBtn = this.wrap.find(this.opts.btnView);
-            this.listLength = 10;
     	},
         bindEvents : function () {
             this.toggleBtn.on('click', $.proxy(this.setTags, this));
         },
     	setTags : function () {
-    		var tags = [];
-    		for (var i = 1, max = this.listLength; i < max; i++) {
+    		var tags = [],
+                listLength = 10;
+    		for (var i = 1, max = listLength; i < max; i++) {
     			tags.push(this.opts.listParent);
-    			for (var j = 1, max = this.listLength; j < max; j++) {
+    			for (var j = 1, max = listLength; j < max; j++) {
     				tags.push(this.opts.listChild);
     				tags.push(i + ' x ' + j + ' = ' + (i * j));
 					tags.push(this.opts.listChildClose);

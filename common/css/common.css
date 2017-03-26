@@ -1,7 +1,11 @@
 @charset "utf-8";
 /* HIVELAB (http://www.hivelab.co.kr) */
 
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@font-face {
+font-family: "Nanum Gothic";
+src:url(font/NanumGothic.eot);
+src:url(font/NanumGothic.eot?#iefix) format('embedded-opentype'), url(font/NanumGothic.woff) format('woff'),url(font/NanumGothic.ttf) format('truetype');
+}
 h1,h2,h3,h4,h5,h6,p{margin:0;padding:0}
 body{font-family: "Nanum Gothic", sans-serif}
 hr{display:none}

@@ -1,3 +1,25 @@
+# Note
+```html
+<script>
+var oldIndex = currentUndex = 0;
+</script>
+```
+위와 같이 선언하게 되면, oldIndex만 지역변수로 저장이 되고, currentIndex는 전역변수로 인식하게 된다.
+
+<br>
+
+```html
+<script>
+var currentIndex = 0,
+     oldIndex = currentIndex;
+</script>
+```
+<br>
+
+이렇게 선언해야 모두 지역변수로 저장된다.
+
+<br>
+
 # point
 <br>
 

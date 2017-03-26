@@ -1,3 +1,101 @@
+# Note
+## 1. while문
+특정 조건을 만족할 때까지, 계속 실행한다.
+
+```html
+<script>
+var a = math.random() + 10;
+while (a === 5) {
+     console.log(a);
+     a++;
+}
+</script>
+```
+
+## 2. for문
+조건문이 true이면, 증감연산자가 실행된다.
+최초 실행시 li의 갯수가 max에 저장되므로, 성능최적화가 된다.
+var a = 0, max = $('li').length -> 이 구문은, 최초 실행 후 종료되는 구문이다.
+
+```html
+<script>
+for (var a = 0, max = $('li').length; a < max ; a++) {
+     console.log(a);
+}
+
+
+var arrayObj = ['data1', 'data2'];
+var tagpush;
+for (var i = 0, max = arrayObj.length; i < max; i++) {
+     tagPush += '<tr><td>' + tagpush[i] + '</td><tr>';
+}
+$('#data_tbody').html(tagPush);
+$('#data_tbody').get(0).innerHtml = tagPush; 
+//get(0)을 쓰면 자바스크립트 선택자로 바뀌어, 자바스크립트 메서드 활용이 가능하다.
+console.log(tagpush);
+
+
+for (var i = 0, max = arrayObj.length; i < max; i++) {
+    tagPush += '<tr>';
+          for (var td = 0, tmax = 5; td < tmax; td++) {
+               '<td>' + arrayObj[i] + '</td>';
+          }
+          tagPush += '</tr>';
+     }
+}
+$('#data_tbody').get(0).innerHtml = tagPush; 
+</script>
+```
+
+for문이 한 번 실행되면, 내부 for문은 5번 실행됨.
++= //계속 값을 더한다. 숫자 외에 문자도 가능.
+
+
+3. 객체
+객체는 속성과 값이 들어있는 구문이다.
+
+```html
+<script>
+var obj = {
+     a : 'text',
+     b : 3,
+     c : function () {
+    
+     },
+     d : ['.stnc'],
+     e : {
+
+     }
+};
+
+console.log(obj.a);
+obj.c();
+
+var obj = {
+    init : function () {
+        this.setElements();
+        this.bindEvents();
+    },
+    setElements : function () {
+        this.btn = $('.btn');
+        this.obj = $('.obj');
+    },
+    bindEvents : function () {
+        this.btn.on('click', $.proxy(this.viewFunc, this));
+    },
+    viewFunc : function () {
+        console.log(2);
+    }
+}
+obj.init();
+</script>
+```
+
+
+
+
+
+
 # point
 ```html
 <script src="http://code.jquery.com/jquery-latest.js"></script>

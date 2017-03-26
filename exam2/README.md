@@ -14,8 +14,6 @@ var currentIndex = 0,
      oldIndex = currentIndex;
 </script>
 ```
-<br>
-
 이렇게 선언해야 모두 지역변수로 저장된다.
 
 <br>

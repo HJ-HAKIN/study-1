@@ -116,14 +116,14 @@
     };
 
     var obj1 = {
-        init : function () {
+        init : function (args) {
+            if (!(this.obj = $(defParams.wrap)).length) return;
+            this.opts = UTIL.def(defParams, (args || {}));
             this.setElements();
             this.setLayout();
             this.bindEvents();
         },
-        setElements : function (args) {
-            if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
+        setElements : function () {
             this.wrap = this.obj.eq(0);
             this.btnPlus = this.wrap.find(this.opts.btnPlus);
             this.listParent = this.wrap.find(this.opts.boxWrap);

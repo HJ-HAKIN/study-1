@@ -70,13 +70,13 @@ ul:first-child{margin-left:0}
     };
 
     var obj1 = {
-    	init : function () {
-    		this.setElements();
-    		this.bindEvents();
-    	},
-    	setElements : function (args) {
+    	init : function (args) {
     		if (!(this.obj = $(defParams.wrap)).length) return;
             this.opts = UTIL.def(defParams, (args || {}));
+            this.setElements();
+            this.bindEvents();
+        },
+        setElements : function () {
             this.wrap = $(this.opts.wrap).eq(0);
             this.box = this.wrap.find(this.opts.objBox);
             this.toggleBtn = this.wrap.find(this.opts.btnView);

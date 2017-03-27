@@ -147,14 +147,14 @@
     };
 
     var obj2 = {
-        init : function () {
+        init : function (args) {
+            if (!(this.obj = $(defParams.wrap)).length) return;
+            this.opts = UTIL.def(defParams, (args || {}));
             this.setElements();
             this.setLayout();
             this.bindEvents();
         },
-        setElements : function (args) {
-            if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
+        setElements : function () {
             this.wrap = this.obj.eq(1);
             this.btnMinus = this.wrap.find(this.opts.btnMinus);
             this.listParent = this.wrap.find(this.opts.boxWrap);
@@ -178,15 +178,15 @@
     };
     
     var obj3 = {
-        init : function () {
+        init : function (args) {
+            if (!(this.obj = $(defParams.wrap)).length) return;
+            this.opts = UTIL.def(defParams, (args || {}));
             this.setElements();
             this.setIndex();
             this.bindEvents();
             this.setBox();
         },
-        setElements : function (args) {
-            if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
+        setElements : function () {
             this.wrap = this.obj.eq(2);
             this.btnPlus = this.wrap.find(this.opts.btnPlus);
             this.btnMinus = this.wrap.find(this.opts.btnMinus);
@@ -222,15 +222,15 @@
     };
 
     var obj4 = {
-        init : function () {
+        init : function (args) {
+            if (!(this.obj = $(defParams.wrap)).length) return;
+            this.opts = UTIL.def(defParams, (args || {}));
             this.setElements();
             this.setIndex();
             this.bindEvents();
             this.setBox();
         },
-        setElements : function (args) {
-            if (!(this.obj = $(defParams.wrap)).length) return;
-            this.opts = UTIL.def(defParams, (args || {}));
+        setElements : function () {
             this.wrap = this.obj.eq(3);
             this.btnPlus = this.wrap.find(this.opts.btnPlus);
             this.btnMinus = this.wrap.find(this.opts.btnMinus);

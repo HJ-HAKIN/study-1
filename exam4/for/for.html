@@ -106,13 +106,13 @@ ul:first-child{margin-left:0}
     };
 
     var obj2 = {
-    	init : function () {
-    		this.setElements();
-    		this.bindEvents();
-    	},
-    	setElements : function (args) {
+    	init : function (args) {
     		if (!(this.obj = $(defParams.wrap)).length) return;
             this.opts = UTIL.def(defParams, (args || {}));
+            this.setElements();
+            this.bindEvents();
+        },
+        setElements : function () {
             this.wrap = $(this.opts.wrap).eq(1);
             this.box = this.wrap.find(this.opts.objBox);
             this.toggleBtn = this.wrap.find(this.opts.btnView);
@@ -135,13 +135,13 @@ ul:first-child{margin-left:0}
     };
 
     var obj3 = {
-    	init : function () {
-    		this.setElements();
-    		this.bindEvents();
-    	},
-    	setElements : function (args) {
+    	init : function (args) {
     		if (!(this.obj = $(defParams.wrap)).length) return;
             this.opts = UTIL.def(defParams, (args || {}));
+            this.setElements();
+            this.bindEvents();
+        },
+        setElements : function () {
             this.wrap = $(this.opts.wrap).eq(2);
             this.box = this.wrap.find(this.opts.objBox);
             this.toggleBtn = this.wrap.find(this.opts.btnView);

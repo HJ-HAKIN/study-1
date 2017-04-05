@@ -79,16 +79,13 @@
     win.examProject.linePlay.prototype = {
         init : function () {
             this.setElements();
-            this.bindEvents();
             this.setArray();
             this.setLayout();
+            this.bindEvents();
         },
         setElements : function () {
             this.playList = this.obj.find(this.opts.avatarList);
             this.btnRandom = this.obj.find(this.opts.playBtn);
-        },
-        bindEvents : function () {
-            this.btnRandom.on('click', $.proxy(this.viewFunc, this));
         },
         setArray : function () {
             this.array = [];
@@ -105,8 +102,11 @@
             }
             this.setView();
         },
+        bindEvents : function () {
+            this.btnRandom.on('click', $.proxy(this.viewFunc, this));
+        },
         setRandom : function () {
-            this.currentIndex = Math.floor(Math.random()*this.array.length);
+            this.currentIndex = Math.floor(Math.random() * this.array.length);
             this.arrayIndex = this.array[this.currentIndex];
         },
         spliceArray : function () {

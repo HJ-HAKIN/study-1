@@ -101,13 +101,13 @@
                 this.array.push(i);
             }
         },
-        setRandom : function () {
-            this.arrayIndex = Math.floor(Math.random() * this.array.length);
-            this.currentIndex = this.array[this.arrayIndex];
-        },
         spliceArray : function () {
             this.array.splice(this.arrayIndex, 1);
             this.oldIndex = this.currentIndex;
+        },
+        setRandom : function () {
+            this.arrayIndex = Math.floor(Math.random() * this.array.length);
+            this.currentIndex = this.array[this.arrayIndex];
         },
         bindEvents : function () {
             this.btnRandom.on('click', $.proxy(this.viewFunc, this));

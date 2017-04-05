@@ -79,7 +79,6 @@
     win.examProject.linePlay.prototype = {
         init : function () {
             this.setElements();
-            this.setArray();
             this.setLayout();
             this.bindEvents();
         },
@@ -87,31 +86,31 @@
             this.playList = this.obj.find(this.opts.avatarList);
             this.btnRandom = this.obj.find(this.opts.playBtn);
         },
+        setLayout : function () {
+            this.playList.hide();
+            this.setArray();
+            this.setRandom();
+            while (this.currentIndex === this.oldIndex) {
+                this.setRandom();
+            }
+            this.setView();
+        },
         setArray : function () {
             this.array = [];
             for (var i = 0, max = this.playList.length; i < max; i++) {
                 this.array.push(i);
             }
         },
-        setLayout : function () {
-            this.playList.hide();
-            this.setArray();
-            this.setRandom();
-            while (this.arrayIndex === this.oldIndex) {
-                this.setRandom();
-            }
-            this.setView();
+        setRandom : function () {
+            this.arrayIndex = Math.floor(Math.random() * this.array.length);
+            this.currentIndex = this.array[this.arrayIndex];
+        },
+        spliceArray : function () {
+            this.array.splice(this.arrayIndex, 1);
+            this.oldIndex = this.currentIndex;
         },
         bindEvents : function () {
             this.btnRandom.on('click', $.proxy(this.viewFunc, this));
-        },
-        setRandom : function () {
-            this.currentIndex = Math.floor(Math.random() * this.array.length);
-            this.arrayIndex = this.array[this.currentIndex];
-        },
-        spliceArray : function () {
-            this.array.splice(this.currentIndex, 1);
-            this.oldIndex = this.arrayIndex;
         },
         viewFunc : function () {
             this.spliceArray();
@@ -123,7 +122,7 @@
         },
         setView : function () {
             this.playList.eq(this.oldIndex).hide();
-            this.playList.eq(this.arrayIndex).show();
+            this.playList.eq(this.currentIndex).show();
         }
     };
     $.fn.examProjectLinePlay = function (args) {

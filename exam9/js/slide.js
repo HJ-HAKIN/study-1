@@ -38,10 +38,12 @@
         },
         setLayout : function () {
             this.slideCont.hide();
+            this.direction = 'next';
             this.currentIndex = 0;
             this.setView();
         },
         prevFunc : function () {
+            this.direction = 'prev';
             this.currentIndex--;
             if (this.currentIndex < 0) {
                 this.currentIndex = this.slideCont.length - 1;
@@ -49,6 +51,7 @@
             this.setView();
         },
         nextFunc : function () {
+            this.direction = 'next';
             this.currentIndex++;
             if (this.currentIndex === this.slideCont.length) {
                 this.currentIndex = 0;
@@ -60,20 +63,37 @@
             var target = $(e.currentTarget);
             this.currentIndex = target.closest('li').index();
             if (this.oldIndex === this.currentIndex) return; 
+            if (this.currentIndex < this.oldIndex) {
+                this.direction = 'prev';
+            } else {
+                this.direction = 'next';
+            }
             this.setView();
         },
         setView : function () {
-            this.dotBtn.eq(this.currentIndex).addClass(this.opts.activeClass);
-            this.slideCont.eq(this.currentIndex).css({
-                'display' : 'block',
-                'left' : '100%'
-            }).stop().animate({
-                'left' : 0
-            });
+            if (this.direction === 'next') {
+                this.slideCont.eq(this.oldIndex).stop().animate({
+                    'left' : '-100%'
+                });
+                this.slideCont.eq(this.currentIndex).css({
+                    'display' : 'block',
+                    'left' : '100%'
+                }).stop().animate({
+                    'left' : 0
+                });
+            } else if (this.direction === 'prev') {
+                this.slideCont.eq(this.oldIndex).stop().animate({
+                    'left' : '100%'
+                });
+                this.slideCont.eq(this.currentIndex).css({
+                    'display' : 'block',
+                    'left' : '-100%'
+                }).stop().animate({
+                    'left' : 0
+                });
+            }
             this.dotBtn.eq(this.oldIndex).removeClass(this.opts.activeClass);
-            this.slideCont.eq(this.oldIndex).stop().animate({
-                'left' : '-100%'
-            });
+            this.dotBtn.eq(this.currentIndex).addClass(this.opts.activeClass);
             this.oldIndex = this.currentIndex;
         }
     };

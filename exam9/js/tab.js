@@ -43,9 +43,7 @@
         setLayout : function () {
             this.tabList.removeClass('active');
             this.tabContList.removeClass('active');
-            var getHash = win.location.hash,
-                hashTarget = this.tabContList.filter(getHash);
-            this.currentIndex = (hashTarget.length) ? hashTarget.index() : 0;
+            this.filterHash();
             this.setView();
             this.castTotal.text(this.tabList.length);
         },
@@ -84,15 +82,19 @@
             this.oldIndex = this.currentIndex;
             this.setIndexNum();
         },
-        onHashChange : function () {
-            var getHash = win.location.hash;
-            this.currentIndex = (getHash) ? $(getHash).index() : 0;
-            this.setView();
-            this.setIndexNum();
-        },
         setIndexNum : function () {
             var indexNum = this.currentIndex + 1;
             this.castCurrent.text(indexNum);
+        },
+        onHashChange : function () {
+            this.filterHash();
+            this.setView();
+            this.setIndexNum();
+        },
+        filterHash : function () {
+            var getHash = win.location.hash,
+                hashTarget = this.tabContList.filter(getHash);
+            this.currentIndex = (hashTarget.length) ? hashTarget.index() : 0;
         },
         getHashId : function () {
             var hashNum = this.tabContList.eq(this.currentIndex).attr('id');

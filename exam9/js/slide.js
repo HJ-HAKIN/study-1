@@ -22,6 +22,7 @@
             this.setElements();
             this.setLayout();
             this.bindEvents();
+            this.setAuto();
         },
         setElements : function () {
             this.slideWrap = this.obj.find(this.opts.contWrap);
@@ -35,6 +36,7 @@
             this.btnPrev.on('click', $.proxy(this.prevFunc, this));
             this.btnNext.on('click', $.proxy(this.nextFunc, this));
             this.dotBtn.on('click', $.proxy(this.dotFunc, this));
+            this.obj.on('mouseenter mouseleave', $.proxy(this.setStop, this));
         },
         setLayout : function () {
             this.direction = 'next';
@@ -93,6 +95,16 @@
             this.dotBtn.eq(this.oldIndex).removeClass(this.opts.activeClass);
             this.dotBtn.eq(this.currentIndex).addClass(this.opts.activeClass);
             this.oldIndex = this.currentIndex;
+        },
+        setAuto : function () {
+            this.autoTime = setInterval($.proxy(this.nextFunc, this), 2000);
+        },
+        setStop : function (e) {
+            if(e.type === 'mouseenter'){
+                clearInterval(this.autoTime);
+            }else if(e.type === 'mouseleave'){
+                this.setAuto();
+            }
         }
     };
     $.fn.examProjectslideObj = function (args) {

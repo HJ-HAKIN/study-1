@@ -19,6 +19,7 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
 .chk_box{display:inline-block;width:34px;height:34px;background:url(img/sp_check.png) no-repeat;background-position:0 0;vertical-align:middle}
 .check_box{position:absolute;left:0;width:34px;height:34px}
 .ipt_chk,.ipt_rdo{position:absolute;width:1px;height:1px;opacity:0}
+.ipt_chk.active + .chk_box{background-position:-36px 0}
 .ipt_chk:checked + .chk_box{background-position:-36px 0}
 .ipt_chk:focus + .chk_box,.ipt_rdo:focus + .rdo_box{outline:#00FF00 dotted thick}
 .select_box{position:relative;width:200px}
@@ -32,6 +33,7 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
 .box2 label{position:relative;padding-left:28px;font-size:16px;line-height:18px}
 .radio_box{display:inline-block;position:relative;margin-right:10px}
 .rdo_box{position:absolute;left:0;width:18px;height:18px;margin-top:2px;background:url(img/sp_radio.png) no-repeat;background-position:0 0;vertical-align:middle}
+.ipt_rdo.active + .rdo_box{background-position:-20px 0}
 .ipt_rdo:checked + .rdo_box{background-position:-20px 0}
 </style>
 </head>
@@ -71,7 +73,7 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
 			<div class="box box1">
 				<p>1. 체크박스</p>
 				<div class="check_box">
-					<input type="checkbox" id="agree_v1" class="ipt_chk">
+					<input type="checkbox" id="agree_v1" class="ipt_chk active">
 					<span class="chk_box"></span>
 				</div>
 				<label for="agree_v1" class="sp">개인정보 수집·이용 및 SMS수신에 동의합니다.</label>
@@ -79,7 +81,7 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
 			<div class="box box2">
 				<p>2. 라디오버튼</p>
 				<span class="radio_box">
-					<input type="radio" id="true" name="radio1" class="ipt_rdo">
+					<input type="radio" id="true" name="radio1" class="ipt_rdo active">
 					<span class="rdo_box"></span>
 					<label for="true">true</label>
 				</span>

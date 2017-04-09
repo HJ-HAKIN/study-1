@@ -25,8 +25,8 @@
     win.examProject.tabObj.prototype = {
         init : function () {
             this.setElements();
-            this.bindEvents();
             this.setLayout();
+            this.bindEvents();
         },
         setElements : function () {
             this.wrap = this.obj.find(this.opts.wrap);
@@ -41,20 +41,19 @@
             this.nextBtn = this.obj.find(this.opts.btnNext);
         },
         setLayout : function () {
+            this.tabList.removeClass('active');
+            this.tabContList.removeClass('active');
             var getHash = win.location.hash,
                 hashTarget = this.tabContList.filter(getHash);
-            this.tabList.removeClass('active');
-            this.tabContList.hide();
             this.currentIndex = (hashTarget.length) ? hashTarget.index() : 0;
-            this.listLength = this.tabList.length;
-            this.castTotal.text(this.listLength);
             this.setView();
+            this.castTotal.text(this.tabList.length);
         },
         bindEvents : function () {
             this.tabList.on('click', '> a', $.proxy(this.tabFunc, this));
             this.prevBtn.on('click', $.proxy(this.prevFunc, this));
             this.nextBtn.on('click', $.proxy(this.nextFunc, this));
-            $(win).on('hashchange', $.proxy(this.initLoadHash, this));
+            $(win).on('hashchange', $.proxy(this.onHashChange, this));
         },
         tabFunc : function (e) {
             e.preventDefault();
@@ -66,29 +65,34 @@
         prevFunc : function () {
             this.currentIndex--;
             if (this.currentIndex < 0) {
-                this.currentIndex = this.listLength - 1;
+                this.currentIndex = this.tabList.length - 1;
             }
             this.getHashId();
         },
         nextFunc : function () {
             this.currentIndex++;
-            if (this.currentIndex >= this.listLength) {
+            if (this.currentIndex >= this.tabList.length) {
                 this.currentIndex = 0;
             }
             this.getHashId();
         },
         setView : function () {
-            this.tabList.eq(this.currentIndex).addClass(this.opts.toggleClass);
-            this.tabContList.eq(this.currentIndex).show();
+            this.tabContList.eq(this.oldIndex).removeClass(this.opts.toggleClass);
             this.tabList.eq(this.oldIndex).removeClass(this.opts.toggleClass);
-            this.tabContList.eq(this.oldIndex).hide();
+            this.tabList.eq(this.currentIndex).addClass(this.opts.toggleClass);
+            this.tabContList.eq(this.currentIndex).addClass(this.opts.toggleClass);
             this.oldIndex = this.currentIndex;
-            this.castCurrent.text(this.currentIndex + 1);
+            this.setIndexNum();
         },
-        initLoadHash : function () {
+        onHashChange : function () {
             var getHash = win.location.hash;
             this.currentIndex = (getHash) ? $(getHash).index() : 0;
             this.setView();
+            this.setIndexNum();
+        },
+        setIndexNum : function () {
+            var indexNum = this.currentIndex + 1;
+            this.castCurrent.text(indexNum);
         },
         getHashId : function () {
             var hashNum = this.tabContList.eq(this.currentIndex).attr('id');

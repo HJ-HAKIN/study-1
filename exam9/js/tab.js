@@ -47,12 +47,14 @@
             this.tabContList.hide();
             this.currentIndex = (hashTarget.length) ? hashTarget.index() : 0;
             this.listLength = this.tabList.length;
+            this.castTotal.text(this.listLength);
             this.setView();
         },
         bindEvents : function () {
             this.tabList.on('click', '> a', $.proxy(this.tabFunc, this));
             this.prevBtn.on('click', $.proxy(this.prevFunc, this));
             this.nextBtn.on('click', $.proxy(this.nextFunc, this));
+            $(win).on('hashchange', $.proxy(this.initLoadHash, this));
         },
         tabFunc : function (e) {
             e.preventDefault();
@@ -60,7 +62,6 @@
             this.currentIndex = target.closest('li').index();
             if (this.oldIndex === this.currentIndex) return;
             this.getHashId();
-            this.setView();
         },
         prevFunc : function () {
             this.currentIndex--;
@@ -68,7 +69,6 @@
                 this.currentIndex = this.listLength - 1;
             }
             this.getHashId();
-            this.setView();
         },
         nextFunc : function () {
             this.currentIndex++;
@@ -76,19 +76,19 @@
                 this.currentIndex = 0;
             }
             this.getHashId();
-            this.setView();
         },
         setView : function () {
             this.tabList.eq(this.currentIndex).addClass(this.opts.toggleClass);
-            this.tabList.eq(this.oldIndex).removeClass(this.opts.toggleClass);
             this.tabContList.eq(this.currentIndex).show();
+            this.tabList.eq(this.oldIndex).removeClass(this.opts.toggleClass);
             this.tabContList.eq(this.oldIndex).hide();
             this.oldIndex = this.currentIndex;
-            this.setText();
-        },
-        setText : function () {
             this.castCurrent.text(this.currentIndex + 1);
-            this.castTotal.text(this.listLength);
+        },
+        initLoadHash : function () {
+            var getHash = win.location.hash;
+            this.currentIndex = (getHash) ? $(getHash).index() : 0;
+            this.setView();
         },
         getHashId : function () {
             var hashNum = this.tabContList.eq(this.currentIndex).attr('id');

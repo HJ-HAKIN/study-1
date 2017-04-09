@@ -37,10 +37,10 @@
             this.dotBtn.on('click', $.proxy(this.dotFunc, this));
         },
         setLayout : function () {
-            this.slideCont.hide();
             this.direction = 'next';
-            this.currentIndex = 0;
-            this.setView();
+            this.oldIndex = this.currentIndex = 0;
+            this.slideCont.css('left', '100%');
+            this.slideCont.eq(this.currentIndex).css('left', '0');
         },
         prevFunc : function () {
             this.direction = 'prev';
@@ -76,7 +76,6 @@
                     'left' : '-100%'
                 });
                 this.slideCont.eq(this.currentIndex).css({
-                    'display' : 'block',
                     'left' : '100%'
                 }).stop().animate({
                     'left' : 0
@@ -86,7 +85,6 @@
                     'left' : '100%'
                 });
                 this.slideCont.eq(this.currentIndex).css({
-                    'display' : 'block',
                     'left' : '-100%'
                 }).stop().animate({
                     'left' : 0

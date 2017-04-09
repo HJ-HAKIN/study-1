@@ -80,8 +80,8 @@
         },
         setView : function () {
             this.tabList.eq(this.currentIndex).addClass(this.opts.toggleClass);
-            this.tabContList.eq(this.currentIndex).show();
             this.tabList.eq(this.oldIndex).removeClass(this.opts.toggleClass);
+            this.tabContList.eq(this.currentIndex).show();
             this.tabContList.eq(this.oldIndex).hide();
             this.oldIndex = this.currentIndex;
             this.setText();

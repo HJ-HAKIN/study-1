@@ -11,7 +11,11 @@
             nextBtn : '.btn_next',
             contWrap : '.slide_cont',
             dotWrap : '.slide_tab',
-            activeClass : 'active'
+            activeClass : 'active',
+            slideOpts : {
+                fade : true,
+                speed : 3000
+            }
         };
         this.obj = container;
         this.opts = UTIL.def(defParams, (args || {}));
@@ -41,8 +45,13 @@
         setLayout : function () {
             this.direction = 'next';
             this.oldIndex = this.currentIndex = 0;
-            this.slideCont.css('left', '100%');
-            this.slideCont.eq(this.currentIndex).css('left', '0');
+            if (!this.opts.slideOpts.fade) {
+                this.slideCont.css('left', '100%');
+                this.slideCont.eq(this.currentIndex).css('left', '0');
+            } else {
+                this.slideCont.hide();
+                this.slideCont.eq(this.currentIndex).show();
+            }
         },
         prevFunc : function () {
             this.direction = 'prev';
@@ -73,31 +82,36 @@
             this.setView();
         },
         setView : function () {
-            if (this.direction === 'next') {
-                this.slideCont.eq(this.oldIndex).stop().animate({
-                    'left' : '-100%'
-                });
-                this.slideCont.eq(this.currentIndex).css({
-                    'left' : '100%'
-                }).stop().animate({
-                    'left' : 0
-                });
-            } else if (this.direction === 'prev') {
-                this.slideCont.eq(this.oldIndex).stop().animate({
-                    'left' : '100%'
-                });
-                this.slideCont.eq(this.currentIndex).css({
-                    'left' : '-100%'
-                }).stop().animate({
-                    'left' : 0
-                });
+            if (this.opts.slideOpts.fade) {
+                this.slideCont.eq(this.oldIndex).stop().fadeOut();
+                this.slideCont.eq(this.currentIndex).stop().fadeIn();
+            } else {
+                if (this.direction === 'next') {
+                    this.slideCont.eq(this.oldIndex).stop().animate({
+                        'left' : '-100%'
+                    });
+                    this.slideCont.eq(this.currentIndex).css({
+                        'left' : '100%'
+                    }).stop().animate({
+                        'left' : 0
+                    });
+                } else if (this.direction === 'prev') {
+                    this.slideCont.eq(this.oldIndex).stop().animate({
+                        'left' : '100%'
+                    });
+                    this.slideCont.eq(this.currentIndex).css({
+                        'left' : '-100%'
+                    }).stop().animate({
+                        'left' : 0
+                    });
+                }
             }
             this.dotBtn.eq(this.oldIndex).removeClass(this.opts.activeClass);
             this.dotBtn.eq(this.currentIndex).addClass(this.opts.activeClass);
             this.oldIndex = this.currentIndex;
         },
         setAuto : function () {
-            this.autoTime = setInterval($.proxy(this.nextFunc, this), 2000);
+            this.autoTime = setInterval($.proxy(this.nextFunc, this), this.opts.slideOpts.speed);
         },
         setStop : function (e) {
             if(e.type === 'mouseenter'){

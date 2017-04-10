@@ -14,8 +14,7 @@
             activeClass : 'active',
             slideOpts : {
                 fade : false,
-                autoPlay : true,
-                speed : 3000
+                speed : 4000
             }
         };
         this.obj = container;
@@ -27,6 +26,7 @@
             this.setElements();
             this.setLayout();
             this.bindEvents();
+            this.setAuto();
         },
         setElements : function () {
             this.slideWrap = this.obj.find(this.opts.contWrap);
@@ -45,9 +45,6 @@
         setLayout : function () {
             this.direction = 'next';
             this.oldIndex = this.currentIndex = 0;
-            if (this.opts.slideOpts.autoPlay) {
-                this.setAuto();
-            }
             if (!this.opts.slideOpts.fade) {
                 this.slideCont.css('left', '100%');
                 this.slideCont.eq(this.currentIndex).css('left', '0');

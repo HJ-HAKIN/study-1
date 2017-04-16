@@ -44,6 +44,7 @@
                 this.selectObj.hide();
                 this.obj.off('clickoutside');
             }
+            this.obj.toggleClass('opened');
         },
         outsideFunc : function () {
             this.selectBtn.triggerHandler('click');

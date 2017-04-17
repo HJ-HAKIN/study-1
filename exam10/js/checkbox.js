@@ -21,7 +21,7 @@
             this.bindEvents();
         },
         setElements : function () {
-            this.checkBox = $(this.opts.chkBox);
+            this.checkBox = this.obj.find(this.opts.chkBox);
             this.inputCheck = this.checkBox.find(this.opts.iptChk);
         },
         bindEvents : function () {

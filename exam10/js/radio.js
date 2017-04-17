@@ -21,7 +21,7 @@
             this.bindEvents();
         },
         setElements : function () {
-            this.radioBox = $(this.opts.rdoBox);
+            this.radioBox = this.obj.find(this.opts.rdoBox);
             this.inputRadio = this.radioBox.find(this.opts.iptRdo);
         },
         bindEvents : function () {

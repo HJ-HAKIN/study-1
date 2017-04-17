@@ -29,7 +29,7 @@
         },
         changBox : function (e) {
             var target = $(e.currentTarget);
-            if (target.closest(this.rdoBox).hasClass(this.opts.activeClass)) return;
+            if (target.closest(this.opts.rdoBox).hasClass(this.opts.activeClass)) return;
             this.radioBox.removeClass(this.opts.activeClass);
             target.closest(this.opts.rdoBox).toggleClass(this.opts.activeClass, target.prop('checked'));
         }

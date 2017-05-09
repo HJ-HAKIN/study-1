@@ -359,24 +359,6 @@ ul{margin:0 0 5px 20px}
 <script src="../common/js/libs/jquery-1.12.4.min.js"></script>
 <script src="../common/js/libs/ba-outside-events.min.js"></script>
 <script src="../common/js/libs/jquery.animate-enhanced.min.js"></script>
-<script>
-(function (win, $) {
-    'use strict';
-    
-    var myName = {
-        name : 'hyewon',
-        sayName : function () {
-            console.log('My name is ' + this.name);
-        }
-    };
-
-    myName.sayName(); //My name is hyewon
-    console.log(myName.hasOwnProperty('name')); //true
-    console.log(myName.hasOwnProperty('nickname')); //nickname 객체가 없으므로 false
-    myName.sayNickName(); //에러발생
-
-})(window, window.jQuery);
-</script>
 </div>
 </body>
 </html>

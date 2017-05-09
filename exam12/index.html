@@ -344,8 +344,9 @@ ul{margin:0 0 5px 20px}
                     <dl>
                     <dt>Prototype 체이닝</dt>
                     <dd>특정 객체의 프로퍼티나 메서드에 접근 시, 해당 객체에 접근하고자 하는 프로퍼티 또는 메서드가 없다면 자신의 부모 역할을 하는 Prototype 객체의 프로퍼티를 차례로 검색하는데, <br>이것을 Prototype 체이닝이라고 한다.<br>
-                        아래 예시를 보면, myName에는 hasOwnProperty() 메서드가 없지만, 에러가 발생하지 않는다. 접근하고자 하는 객체에 해당 메서드가 없기 때문에, 부모인 Object.prototype을 참조했기 때문이다.
+                        아래 예시를 보면, myName 객체에는 hasOwnProperty() 메서드가 없지만, 에러가 발생하지 않는다. 접근하고자 하는 객체에 해당 메서드가 없기 때문에, 부모인 Object.prototype을 참조했기 때문이다.
                         <img src="img/img12.jpg" alt="">
+                        <span class="img-sub">hasOwnProperty() : 이 메서드를 호출한 객체에 인자로 넘긴 문자열 이름의 프로퍼티나 메서드가 있는지 체크하는 Javascript 표준 API</span>
                     </dd>
                     </dl>
                 </div>

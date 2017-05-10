@@ -24,7 +24,8 @@ dt{font-size:16px;font-weight:bold}
 dl{margin-top:20px}
 dd{position:relative;padding-left:10px;font-size:12px;line-height:1.8}
 dd:before{position:absolute;top:10px;left:0;width:3px;height:1px;background:gray;content:''}
-.header{margin-top:30px}
+.header{padding-top:30px}
+.inner{padding:0 16px}
 .box{margin-top:40px;padding-top:30px;border-top: 1px dashed gray}
 .box-img{margin-top:20px;font-size:0}
 .box-text{margin-top:20px}
@@ -32,21 +33,25 @@ dd:before{position:absolute;top:10px;left:0;width:3px;height:1px;background:gray
 .box-text .sub{overflow:hidden;padding-left:30px}
 .box-text .sub ul li{list-style:disc}
 .img-sub{display:block;font-family:consolas;font-size:12px;font-style:italic;color:#099ab6}
+.sub-img-full{margin-top:5px}
 ul{margin:0 0 5px 20px}
 .examples{margin-top:10px;padding-bottom:20px}
 .examples:after{display:block;clear:both;content:''}
 .header ul{margin-left:0}
 .header li a{font-size:12px;font-weight:normal;color:#000}
+@media screen and (max-width:768px) {
+.box-text .sub-img{float:none}
+.box-text .sub{padding-left:0}
+}
 /*.box-img{text-align:center}*/
 /* //temporary css */
 </style>
 </head>
 <body>
-<!-- wrapper [s] -->
-<div id="wrapper">
-    <!-- container [s] -->
-    <div id="container">
-        <h1>2017 JS 과제 회고 <span>(작성 : UI개발2팀 안혜원)</span></h1>
+<!-- container [s] -->
+<div id="container">
+    <h1>2017 JS 과제 회고 <span>(작성 : UI개발2팀 안혜원)</span></h1>
+    <div class="inner">
         <div class="header">
             <h2>목차</h2>
             <ol>
@@ -230,7 +235,7 @@ ul{margin:0 0 5px 20px}
                     <dd>IE 하위 대응에도 가능하도록 active 클래스로 인터렉션 구현</dd>
                     <dd>로딩 시 시스템적으로 checked가 되어있는지 아닌지에 대한 설정 필요</dd>
                     <dd>라디오버튼의 경우 name 속성을 filtering하여 동일 값을 가진 요소만 제어</dd>
-                    <dd>페이지 내에 같은 UIO가 여러개 발생하는 경우 중복 방지를 위해 플러그인화</dd>
+                    <dd>페이지 내에 같은 UIO가 여러개 발생하는 경우 중복 방지를 위해 플러그인화 한다.</dd>
                     <dd>일반적으로 짠 코드는 scope가 다르기 때문에, 다른 함수에서 호출할 수 없다. 따라서 객체를 window에 종속시켜 다른 함수에서도 호출이 가능하도록 한다.</dd>
                     </dl>
                     <dl>
@@ -243,7 +248,7 @@ ul{margin:0 0 5px 20px}
                     <dl>
                     <dt>Tip</dt>
                     <dd>filtering 하여 함수 실행시에는, this를 미리 _this 등으로 저장하여 사용하거나, $.proxy로 처리한다.</dd>
-                    <dd>attr()과 prop()은 둘 다 유사하게 속성값을 가져오지만, jQuery 1.6이상 버전에서는 attr은 문자열로, prop은 boolean으로 값을 받아온다.</dd>
+                    <dd>attr()과 prop()은 둘 다 유사하게 속성값을 가져오지만, jQuery 1.6이상 버전에서는 attr()은 문자열로, prop()은 boolean으로 값을 받아온다.</dd>
                     <dd>trigger()는 매치되는 모든 이벤트를 trigger하며, DOM Tree를 통해 버블링이 발생할 수 있다.</dd>
                     <dd>triggerHandler()는 브라우저의 기본 동작 리스너가 일어나지 않으며, 단순히 handler 메서드만 호출한다.</dd>
                     </dl>
@@ -344,23 +349,22 @@ ul{margin:0 0 5px 20px}
                     </dl>
                     <dl>
                     <dt>Prototype 체이닝</dt>
-                    <dd>특정 객체의 프로퍼티나 메서드에 접근 시, 해당 객체에 접근하고자 하는 프로퍼티 또는 메서드가 없다면 자신의 부모 역할을 하는 Prototype 객체의 프로퍼티를 차례로 검색하는데, <br>이것을 Prototype 체이닝이라고 한다.<br>
+                    <dd>특정 객체의 프로퍼티나 메서드에 접근 시, 해당 객체에 접근하고자 하는 프로퍼티 또는 메서드가 없다면 자신의 부모 역할을 하는 Prototype 객체의 프로퍼티를 차례로 검색하는데, 이것을 Prototype 체이닝이라고 한다.<br>
                         아래 예시를 보면, myName 객체에는 hasOwnProperty() 메서드가 없지만, 에러가 발생하지 않는다. 접근하고자 하는 객체에 해당 메서드가 없기 때문에, 부모인 Object.prototype을 참조했기 때문.
-                        <div><img src="img/img12.jpg" alt=""></div>
-                        <span class="img-sub">hasOwnProperty() : 이 메서드를 호출한 객체에 인자로 넘긴 문자열 이름의 프로퍼티나 메서드가 있는지 체크하는 Javascript 표준 API</span>
+                        <div class="sub-img-full"><img src="img/img12.jpg" alt=""></div>
+                        <span class="img-sub">Object.hasOwnProperty() : 이 메서드를 호출한 객체에 인자로 넘긴 문자열 이름의 프로퍼티나 메서드가 있는지 체크하는 Javascript 표준 API</span>
                     </dd>
                     </dl>
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- container [e] -->
+</div>
+<!-- container [e] -->
 <!-- [ Javascript Area ] -->
 <!-- Libs -->
 <script src="../common/js/libs/jquery-1.12.4.min.js"></script>
 <script src="../common/js/libs/ba-outside-events.min.js"></script>
 <script src="../common/js/libs/jquery.animate-enhanced.min.js"></script>
-</div>
 </body>
 </html>

@@ -26,7 +26,9 @@
             this.setElements();
             this.setLayout();
             this.bindEvents();
-            this.setAuto();
+            if (this.opts.slideOpts.setAuto) {
+                this.setAuto();
+            }
         },
         setElements : function () {
             this.slideWrap = this.obj.find(this.opts.contWrap);

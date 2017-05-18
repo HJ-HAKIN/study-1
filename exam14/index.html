@@ -720,9 +720,9 @@ ins{text-decoration:none}
 <script>
 (function (win, $) {
     'use strict';
-    win.stProject = win.stProject || {};
+    win.examProject = win.examProject || {};
 
-    win.stProject.stickyNav = function (args) {
+    win.examProject.stickyNav = function (args) {
         var defParams = {
             container : '.filter_sort_wrap',
             fixClass : 'sticky'
@@ -731,7 +731,7 @@ ins{text-decoration:none}
         if (!(this.obj = $(this.opts.container)).length) return;
         this.init();
     };
-    win.stProject.stickyNav.prototype = {
+    win.examProject.stickyNav.prototype = {
         init : function () {
             this.setLayout();
             this.checkOffsetTop();
@@ -766,7 +766,7 @@ ins{text-decoration:none}
         }
     };
 
-    win.stProject.stickyTop = function (args) {
+    win.examProject.stickyTop = function (args) {
         var defParams = {
             container : '.btn_top',
             minObj : '#container',
@@ -777,7 +777,7 @@ ins{text-decoration:none}
         if (!(this.obj = $(this.opts.container)).length) return;
         this.init();
     };
-    win.stProject.stickyTop.prototype = {
+    win.examProject.stickyTop.prototype = {
         init : function () {
             this.setElements();
             this.setLayout();
@@ -817,8 +817,8 @@ ins{text-decoration:none}
     }
 
     $(function () {
-        win.stickyNav = new win.stProject.stickyNav();
-        win.stickyNav = new win.stProject.stickyTop();
+        win.stickyNav = new win.examProject.stickyNav();
+        win.stickyNav = new win.examProject.stickyTop();
     });
 })(window, window.jQuery);
 </script>

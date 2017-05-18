@@ -139,6 +139,7 @@ ins{text-decoration:none}
                 return true;
             });
             this.quickTop = this.quickChild.find(this.opts.btnTop);
+            this.scrolling = false;
         },
         checkOffsetTop : function () {
             this.offsetArray = [];
@@ -159,7 +160,7 @@ ins{text-decoration:none}
             this.currentIndex = this.quickLinks.index(target);
             $('html, body').stop().animate({
                 scrollTop : this.offsetArray[this.currentIndex]
-            });
+            }, $.proxy(this.scrollEndFunc, this)); // $(win).on('scroll') 될 때마다 실행하지 않고, animate가 끝나면 콜백함수로 호출
         },
         onTopFunc : function (e) {
             e.preventDefault();
@@ -179,7 +180,7 @@ ins{text-decoration:none}
                 }
             }
             win.clearTimeout(this.scrollEndTime);
-            this.scrollEndTime = win.setTimeout($.proxy(this.scrollEndFunc, this), 100);
+            this.scrollEndTime = win.setTimeout($.proxy(this.scrollEndFunc, this), 100); //스크롤 끝난 뒤 scrollEndFunc 실행
         },
         scrollEndFunc : function () {
             var winTop = $(win).scrollTop();

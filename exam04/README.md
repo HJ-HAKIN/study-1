@@ -20,14 +20,14 @@ var obj = {
     };
     for (var key in obj) {
         console.log(key); //결과 : name, site, email, tel
-        console.log(key, obj[key]); //결과 : name 하이브랩, site hivelab.co.kr, email hivelab@hivelab.co.kr, tel 031-111-1111
+        console.log(key, obj[key]); 
+        //결과 : name 하이브랩, site hivelab.co.kr, email hivelab@hivelab.co.kr, tel 031-111-1111
     };
 </script>
 ```
 
 # point
 ```html
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 (function (win, $) {
     var objFunc = {

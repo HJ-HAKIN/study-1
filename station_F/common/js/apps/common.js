@@ -1,10 +1,10 @@
 (function (win, $, doc) {
     'use strict';
-    win.stProject = win.stProject || {};
+    win.stationF = win.stationF || {};
 
     var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-    win.stProject.common = (function () {
+    win.stationF.common = (function () {
         return {
             util : {
                 isSupportTransform : (function () {

@@ -126,12 +126,12 @@
 <script>
 (function (win, $) {
 	'use strict'
-	win.stProject = win.stProject || {};
-	win.stProject.common = win.stProject.common || {};
+	win.stationF = win.stationF || {};
+	win.stationF.common = win.stationF.common || {};
 
-	var UTIL = win.stProject.common.util;
+	var UTIL = win.stationF.common.util;
 
-	win.stProject.stickyNav = function (args) {
+	win.stationF.stickyNav = function (args) {
 		var defParams = {
 			container : '.header',
 			fixedClass : 'fix-nav'
@@ -140,7 +140,7 @@
 		if (!(this.obj = $(this.opts.container)).length) return; 
 		this.init();
 	};
-	win.stProject.stickyNav.prototype = {
+	win.stationF.stickyNav.prototype = {
 		init :  function () {
 			this.setLayout();
 			this.setOffsetTop();
@@ -176,7 +176,7 @@
 		}
 	};
 
-	win.stProject.anchorNav = function (args) {
+	win.stationF.anchorNav = function (args) {
 		var defParams = {
 			container : '.header',
 			activeClass : 'active',
@@ -188,7 +188,7 @@
 		if (!(this.obj = $(this.opts.container)).length) return; 
 		this.init();
 	};
-	win.stProject.anchorNav.prototype = {
+	win.stationF.anchorNav.prototype = {
 		init : function () {
 			this.setElements();
 			this.checkOffsetTop();
@@ -255,7 +255,7 @@
         }
 	};
 
-	win.stProject.toggleNav = function (args) {
+	win.stationF.toggleNav = function (args) {
 		var defParams = {
 			container : 'body',
 			toggleBtn : '.nav-toggle-btn',
@@ -269,11 +269,12 @@
 		if (!(this.obj = $(this.opts.container)).length) return;
 		this.init();
 	};
-	win.stProject.toggleNav.prototype = {
+	win.stationF.toggleNav.prototype = {
 		init : function () {
 			this.setElements();
 			this.setLayout();
 			this.bindEvents();
+			this.setDimmed();
 		},
 		setElements : function () {
 			this.toggleBtn = this.obj.find(this.opts.toggleBtn);
@@ -283,6 +284,14 @@
 		setLayout : function () {
 			this.toggleDimmed.hide();
 		},
+		setDimmed : function () {
+			if (!this.toggleDimmed.is(':visible')) {
+				console.log(3);
+				this.obj.addClass(this.opts.noScrollClass);
+			} else {
+				this.obj.removeClass(this.opts.noScrollClass);
+			}
+		},
 		bindEvents : function () {
 			this.toggleBtn.on('click', $.proxy(this.toggleFunc, this));
 		},
@@ -290,19 +299,17 @@
 			if(!this.toggleCont.hasClass(this.opts.toggleClass)) {
 				this.toggleDimmed.fadeIn(this.opts.toggleSpeed);
 				this.toggleCont.addClass(this.opts.toggleClass);
-				this.obj.addClass(this.opts.noScrollClass);
 			} else if (this.toggleCont.hasClass(this.opts.toggleClass)) {
 				this.toggleDimmed.fadeOut(this.opts.toggleSpeed);
 				this.toggleCont.removeClass(this.opts.toggleClass);
-				this.obj.removeClass(this.opts.noScrollClass);
 			}
 		}
 	}
 
 	$(function () {
-		var stickyNav = new win.stProject.stickyNav();
-		var anchorNav = new win.stProject.anchorNav();
-		var toggleNav = new win.stProject.toggleNav();
+		var stickyNav = new win.stationF.stickyNav();
+		var anchorNav = new win.stationF.anchorNav();
+		var toggleNav = new win.stationF.toggleNav();
 	});
 
 })(window, window.jQuery);

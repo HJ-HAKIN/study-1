@@ -9,6 +9,22 @@
 * Array.join() 메서드는 String.split() 메서드와 반대되는 기능을 한다.
 * String.split() 메서드는 문자열을 조각들로 분리하고 이 조각들을 원소로 하는 배열을 생성하여 반환한다.
 
+## 반복문으로 키값을 꺼내 오는 방법 : for ... in 으로 꺼내온다.
+```html
+<script>
+var obj = {
+        name : '하이브랩',
+        site : 'hivelab.co.kr',
+        email : 'hivelab@hivelab.co.kr',
+        tel : '031-111-1111'
+    };
+    for (var key in obj) {
+        console.log(key); //결과 : name, site, email, tel
+        console.log(key, obj[key]); //결과 : name 하이브랩, site hivelab.co.kr, email hivelab@hivelab.co.kr, tel 031-111-1111
+    };
+</script>
+```
+
 # point
 ```html
 <script src="http://code.jquery.com/jquery-latest.js"></script>

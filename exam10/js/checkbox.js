@@ -5,42 +5,40 @@
 
     var UTIL = win.examProject.common.util;
 
-    win.examProject.checkBoxUi = function (container, args) {
+    win.examProject.checkBoxUi = function (args) {
         var defParams = {
-            chkBox : '.check_box',
+            container : '.box1',
+            chkBx : '.check_box',
             iptChk : '.ipt_chk',
             activeClass : 'chk_active'
         };
-        this.obj = container;
-        this.opts = UTIL.def(defParams, (args || {}));
+        this.opts = UTIL.def({}, defParams, (args || {}));
+        if (!(this.obj = $(this.opts.container)).length) return;
         this.init();
     };
     win.examProject.checkBoxUi.prototype = {
         init : function () {
             this.setElements();
             this.bindEvents();
+            this.initLayout();
         },
         setElements : function () {
-            this.checkBox = this.obj.find(this.opts.chkBox);
-            this.inputCheck = this.checkBox.find(this.opts.iptChk);
+            this.inputCheck = this.obj.find(this.opts.iptChk);
+        },
+        initLayout : function () {
+            this.inputCheck.filter(':checked').closest(this.obj).addClass(this.opts.activeClass);
+            this.inputCheck.filter(':not(:checked)').closest(this.obj).removeClass(this.opts.activeClass);
         },
         bindEvents : function () {
             this.inputCheck.on('change', $.proxy(this.changBox, this));
         },
         changBox : function (e) {
             var target = $(e.currentTarget);
-            target.closest(this.opts.chkBox).toggleClass(this.opts.activeClass, target.prop('checked'));
+            target.closest(this.obj).toggleClass(this.opts.activeClass, target.prop('checked'));
         }
-    };
-    $.fn.examProjectCheckBoxUi = function (args) {
-        var returnLengths = [];
-        for (var i = 0, max = $(this).length; i < max; i++) {
-            returnLengths.push(new win.examProject.checkBoxUi($(this).eq(i), args));
-        }
-        return returnLengths;
     };
 
     $(function () {
-        $('.js-check-wrap').examProjectCheckBoxUi();
+        var checkBoxUi = new win.examProject.checkBoxUi();
     });
 })(window, window.jQuery);

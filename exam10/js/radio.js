@@ -34,15 +34,8 @@
             target.closest(this.opts.rdoBox).toggleClass(this.opts.activeClass, target.prop('checked'));
         }
     };
-    $.fn.examProjectRadiokBoxUi = function (args) {
-        var returnLengths = [];
-        for (var i = 0, max = $(this).length; i < max; i++) {
-            returnLengths.push(new win.examProject.radioBoxUi($(this).eq(i), args));
-        }
-        return returnLengths;
-    };
 
     $(function () {
-        $('.js-radio-wrap').examProjectRadiokBoxUi();
+        var radioBoxUi = new win.examProject.radioBoxUi();
     });
 })(window, window.jQuery);

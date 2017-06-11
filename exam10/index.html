@@ -53,7 +53,7 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
         <div class="box box1 js-check-wrap">
             <p>1. 체크박스</p>
             <div class="check_box">
-                <input type="checkbox" id="agree_v1" class="ipt_chk">
+                <input type="checkbox" id="agree_v1" class="ipt_chk" checked="checked">
                 <span class="chk_box"></span>
             </div>
             <label for="agree_v1" class="sp">개인정보 수집·이용 및 SMS수신에 동의합니다.</label>
@@ -61,7 +61,7 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
         <div class="box box2 js-radio-wrap">
             <p>2. 라디오버튼</p>
             <span class="radio_box">
-                <input type="radio" id="radio1" name="radio1" class="ipt_rdo">
+                <input type="radio" id="radio1" name="radio1" class="ipt_rdo" checked="checked">
                 <span class="rdo_box"></span>
                 <label for="radio1">라디오1</label>
             </span>
@@ -95,9 +95,99 @@ p{margin-bottom:30px;padding-bottom:10px;border-bottom:2px solid #da0707;font-si
 <script src="../common/js/libs/ba-outside-events.min.js"></script>
 <!-- Apps -->
 <script src="../common/js/apps/common.js"></script>
-<script src="js/checkbox.js"></script>
-<script src="js/radio.js"></script>
-<script src="js/select.js"></script>
+<script>
+(function (win, $) {
+    'use strict';
+    win.examProject = win.examProject || {};
+    win.examProject.common = win.examProject.common || {};
+
+    var UTIL = win.examProject.common.util;
+
+    win.examProject.checkBoxUi = function (args) {
+        var defParams = {
+            container : '.box1',
+            chkBx : '.check_box',
+            iptChk : '.ipt_chk',
+            activeClass : 'chk_active'
+        };
+        this.opts = UTIL.def({}, defParams, (args || {}));
+        if (!(this.obj = $(this.opts.container)).length) return;
+        this.init();
+    };
+    win.examProject.checkBoxUi.prototype = {
+        init : function () {
+            this.setElements();
+            this.bindEvents();
+            this.initLayout();
+        },
+        setElements : function () {
+            this.inputCheck = this.obj.find(this.opts.iptChk);
+        },
+        initLayout : function () {
+            this.inputCheck.filter(':checked').closest(this.obj).addClass(this.opts.activeClass);
+            this.inputCheck.filter(':not(:checked)').closest(this.obj).removeClass(this.opts.activeClass);
+        },
+        bindEvents : function () {
+            this.inputCheck.on('change', $.proxy(this.changBox, this));
+        },
+        changBox : function (e) {
+            var target = $(e.currentTarget);
+            target.closest(this.obj).toggleClass(this.opts.activeClass, target.prop('checked'));
+        }
+    };
+
+    win.examProject.radioBoxUi = function (args) {
+        var defParams = {
+            container : '.box2',
+            radioBx : '.radio_box',
+            radioBtn : '.ipt_rdo',
+            activeClass : 'rdo_active'
+        };
+        this.opts = UTIL.def({}, defParams, (args || {}));
+        if (!(this.obj = $(this.opts.container)).length) return;
+        this.init();
+    };
+    win.examProject.radioBoxUi.prototype = {
+        init : function () {
+            this.setElements();
+            this.initLayout();
+            this.bindEvents();
+        },
+        setElements : function () {
+            this.radioBx = this.obj.find(this.opts.radioBx);
+            this.radioBtn = this.radioBx.find(this.opts.radioBtn);
+        },
+        initLayout : function () {
+            this.radioBtn.filter(':checked').closest('.radio_box').addClass('rdo_active');
+            this.radioBtn.filter(':not(:checked)').closest('.radio_box').removeClass('rdo_active');
+        },
+        bindEvents : function () {
+            this.radioBtn.on('change', $.proxy(this.onChangeFunc, this));
+        },
+        onChangeFunc : function (e) {
+            var target = $(e.currentTarget);
+            this.radioName = target.attr('name');
+            target.closest('.radio_box').toggleClass('rdo_active', target.prop('checked'));
+            this.onClickFunc();
+        },
+        onClickFunc : function () {
+            var _this = this;
+            this.radioBtn.filter($.proxy(function () {
+                var target = $(this),
+                    targetName = target.attr('name');
+                if (_this.radioName === targetName) {
+                    target.closest(_this.opts.radioBx).toggleClass(_this.opts.activeClass, target.prop('checked'));
+                }
+            }), this);
+        }
+    };
+
+    $(function () {
+        var checkBoxUi = new win.examProject.checkBoxUi();
+        var radioBoxUi = new win.examProject.radioBoxUi();
+    });
+})(window, window.jQuery);
+</script>
 </div>
 </body>
 </html>

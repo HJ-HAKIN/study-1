@@ -1,5 +1,5 @@
 ## Array.prototype
-* Array.join : 배열의 모든 요소를 연결해 하나의 문자열로 만듬.
+* Array.join() : 배열의 모든 요소를 연결해 하나의 문자열로 만듬.
     ```html
     <script>
         var a = ['바람', '비', '불'];
@@ -9,26 +9,26 @@
         var myVar4 = a.join('');    // myVar4에 '바람비불'을 대입
     </script>
     ```
-* Array.reverse
-* Array.sort
-* Array.concat
-* Array.slice
-* Array.splice
-* Array.push
-* Array.pop
-* Array.shift
-* Array.unshift
-* Array.toString
-* Array.indexOf
+* Array.reverse()
+* Array.sort()
+* Array.concat()
+* Array.slice()
+* Array.splice()
+* Array.push()
+* Array.pop()
+* Array.shift()
+* Array.unshift()
+* Array.toString()
+* Array.indexOf()
 
 ## String.prototype
-* String.replace
-* String.slice
-* String.split
-* String.search
-* String.match
-* String.trim
-* String.indexOf
+* String.replace()
+* String.slice()
+* String.split()
+* String.search()
+* String.match()
+* String.trim()
+* String.indexOf()
 
 ## Object.prototype
-* Object.hasOwnProperty
+* Object.hasOwnProperty()

@@ -1,6 +1,5 @@
 # point
 ```html
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 $(function () {
     var wrap = $('.exam_wrap').eq(2),
@@ -35,5 +34,4 @@ $(function () {
     nextBtn.on('click', nextFunc);
 });
 </script>
-</body>
 ```

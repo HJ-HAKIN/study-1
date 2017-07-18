@@ -26,9 +26,11 @@ $(function () {
         setList();
     };
     var setList = function () {
+        console.log(oldIndex);
         listChild.eq(oldIndex).css('background', '');
         listChild.eq(currentIndex).css('background', 'yellow');
         oldIndex = currentIndex;
+        console.log(oldIndex);
     };
     prevBtn.on('click', prevFunc);
     nextBtn.on('click', nextFunc);

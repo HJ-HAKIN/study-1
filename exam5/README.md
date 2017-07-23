@@ -1,7 +1,7 @@
-#this
+# this
 자바스크립트의 this는, 여러가지 함수가 호출되는 방식에 따라 다른 객체를 참조하는데, 이것을 this 바인딩이라고 한다.
 
-##객체의 메서드를 호출할 때 this 바인딩
+## 객체의 메서드를 호출할 때 this 바인딩
 
 ```html
 <script>
@@ -23,8 +23,9 @@ otherObject.sayName();
 </script>
 ```
 
-##함수를 호출할 때 this 바인딩
-*window 객체에 바인딩
+## 함수를 호출할 때 this 바인딩
+* window 객체에 바인딩
+
 ```html
 <script>
 var test = 'this is test';
@@ -37,7 +38,8 @@ sayFoo();
 </script>
 ```
 
-*내부 함수의 this 바인딩
+* 내부 함수의 this 바인딩
+
 ```html
 <script>
 var value = 100;
@@ -65,10 +67,11 @@ myObject.func1();
 </script>
 ```
 
-##생성자 함수를 호출할 때 this 바인딩
-*1. 빈 객체 생성 및 this 바인딩
-*2. this를 통한 프로퍼티 생성
-*3. 생성된 객체 리턴
+## 생성자 함수를 호출할 때 this 바인딩
+* 1. 빈 객체 생성 및 this 바인딩
+* 2. this를 통한 프로퍼티 생성
+* 3. 생성된 객체 리턴
+
 ```html
 <script>
 var Person = function (name) {
@@ -80,8 +83,8 @@ console.log(foo.name);
 </script>
 ```
 
-##call과 apply 메서드를 이용한 명시적인 this 바인딩
-첫 번째 인자로 넘긴 객체가 this로 명시적으로 바인딩됨.
+## call과 apply 메서드를 이용한 명시적인 this 바인딩
+
 ```html
 <script>
 function Person (name, age, gender) {

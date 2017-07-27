@@ -23,7 +23,7 @@ var obj = {
         this.viewFunc();
     },
     viewFunc : function () {
-        this.listChildFirst.eq(indexFirst).css('background','yellow');
+        this.listChildFirst.eq(this.indexFirst).css('background','yellow');
     }
 };
 obj.init();

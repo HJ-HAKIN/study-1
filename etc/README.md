@@ -14,7 +14,7 @@ $.sum = function (array) {
     return total;
 };
 
-var result = $.sum([20, 30, 15, 45]);
+var result = [$.sum([20, 30, 15, 45]]);
 console.log(result);
 
 /* 

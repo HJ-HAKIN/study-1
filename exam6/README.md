@@ -3,7 +3,9 @@
 <script>
 var obj = {
     init : function () {
-        console.log(2);
+        this.setElements();
+        this.initLayout();
+        this.bindEvents();
     },
     setElements : function () {
         this.wrapFirst = $('.exam_wrap').eq(0);

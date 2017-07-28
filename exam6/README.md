@@ -61,7 +61,7 @@ console.log(array);
 var array = [];
 for (var i = 0, max = 6; i < max; i++) {
     array[i] = [];
-    for (j = 0, jmax = 6; j < jmax; j++) {
+    for (var j = 0, jmax = 6; j < jmax; j++) {
         array[i][j] = i * j;
     }
 }

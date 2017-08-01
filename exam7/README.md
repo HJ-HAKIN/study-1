@@ -18,6 +18,7 @@ for (var key in obj) {
 var result = array.sort().join('');
 console.log(result);
 </script>
+```
 
 Q. 'bcaebe' 문자열을 hasOwnProperty 를 사용해서, {a : 1, b : 2, c : 1, e : 2} 로 변경해보세요.
 ```html

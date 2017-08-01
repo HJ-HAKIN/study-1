@@ -62,23 +62,6 @@ console.log(result);
 Q. [40, 100, 1, 5, 25, 10] 에서 가장 큰 수 순서대로 index 를 배열로 출력하세요. (for/if문 사용)
 ```html
 <script>
-//방법1
-var array = [40, 100, 1, 5, 25, 10],
-    cloneArray = array.slice(),
-    newArray = [];
-var sortArray = array.sort(function (a, b) {
-    return b - a
-});
-for (var i = 0, max = array.length; i < max; i++) {
-    for (j = 0, jmax = cloneArray.length; j < jmax; j++) {
-        if (array[i] === cloneArray[j]) {
-            newArray[i] = j;
-        }
-    }
-}
-console.log(newArray);
-
-//방법2
 var array = [40, 100, 1, 5, 25, 10],
     cloneArray = array.slice(),
     newArray = [];

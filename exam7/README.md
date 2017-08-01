@@ -152,8 +152,8 @@ for (var i = 0, max = 6; i < max; i++) {
     array[i] = Math.floor(Math.random() * max);
     for (var j = 0; j < i; j++) {
         if (array[i] === array[j]) {
-            array.pop();
             i--;
+            continue;
         }
     }
 }

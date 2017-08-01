@@ -34,6 +34,7 @@ for (var i = 0, max = array.length; i < max; i++) {
 }
 console.log(obj);
 </script>
+```
 
 Q. 배열에 본인 이름을 한글자씩 담은 다음 문자열로 출력하세요.
 ```html
@@ -54,6 +55,7 @@ for (var i = 0, max = txt.length; i < max; i++) {
 var result = array.reverse().join('');
 console.log(result);
 </script>
+```
 
 Q. [40, 100, 1, 5, 25, 10] 에서 가장 큰 수 순서대로 index 를 배열로 출력하세요. (for/if문 사용)
 ```html
@@ -73,6 +75,7 @@ for (var i = 0, max = array.length; i < max; i++) {
 }
 console.log(newArray);
 </script>
+```
 
 Q. 2중 배열로 구구단을 만드세요. (for문 사용)
 ```html
@@ -86,6 +89,7 @@ for (var i = 0, max = 10; i < max; i++) {
 }
 console.log(array);
 </script>
+```
 
 Q. 배열에 숫자 0 ~ 9까지 담아보세요. (for문 사용)
 ```html
@@ -96,6 +100,7 @@ for (var i = 0, max = 10; i < max; i++) {
 }
 console.log(array);
 </script>
+```
 
 Q. 배열에 숫자 0 ~ 5 사이의 랜덤한 숫자를 6개 담아보세요. (for문 사용)
 ```html
@@ -106,6 +111,7 @@ for (var i = 0, max = 6; i < max; i++) {
 }
 console.log(array);
 </script>
+```
 
 Q. 배열에 숫자 0 ~ 9까지 담고, 버튼 클릭시 랜덤한 숫자를 하나씩 빼주세요.
 ```html
@@ -138,6 +144,7 @@ var obj = {
 }
 obj.init();
 </script>
+```
 
 Q. 배열에 숫자 0 ~ 5 사이의 랜덤한 숫자를 중복되는 값이 없도록 6개 담아보세요. (for/if문 사용)
 ```html
@@ -159,3 +166,4 @@ for (var i = 0, max = 6; array.length < max; i++) {
 }
 console.log(array);
 </script>
+```

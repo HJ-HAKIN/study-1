@@ -44,6 +44,7 @@ var array = ['An', 'Hyewon'];
 var result = array.join(' ');
 console.log(result);
 </script>
+```
 
 Q. 'question' 문자열을 거꾸로 출력하세요. (for문 사용)
 ```html

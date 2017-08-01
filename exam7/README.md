@@ -152,18 +152,13 @@ Q. 배열에 숫자 0 ~ 5 사이의 랜덤한 숫자를 중복되는 값이 없�
 ```html
 <script>
 var array = [];
-for (var i = 0, max = 6; array.length < max; i++) {
-    // array[i] = Math.floor(Math.random() * max);
-    // for (var j = 0; j < i; j++) {
-    //  if (array[i] === array[j]) {
-    //      array.pop();
-    //      i--;
-    //  }
-    // }
-    
-    var randomNum = Math.floor(Math.random() * max);
-    if ($.inArray(randomNum, array) === -1) {
-        array.push(randomNum);
+for (var i = 0, max = 6; i < max; i++) {
+    array[i] = Math.floor(Math.random() * max);
+    for (var j = 0; j < i; j++) {
+        if (array[i] === array[j]) {
+            array.pop();
+            i--;
+        }
     }
 }
 console.log(array);

@@ -109,7 +109,7 @@ Q. 배열에 숫자 0 ~ 5 사이의 랜덤한 숫자를 6개 담아보세요. (f
 <script>
 var array = [];
 for (var i = 0, max = 6; i < max; i++) {
-    array[i] = Math.floor(Math.random() * 6);
+    array[i] = Math.floor(Math.random() * max);
 }
 console.log(array);
 </script>

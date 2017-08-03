@@ -79,8 +79,8 @@ var obj = {
     onClickBear : function (e) {
         this.joinEvent = true;
         var target = $(e.currentTarget);
-        this.currentTarget = target.closest('li').index();
-        console.log(this.currentTarget);
+        this.currentIndex = target.closest('li').index();
+        console.log(this.currentIndex);
     },
     setMove : function () {
         $('html, body').animate({scrollTop:'400'}, 400);

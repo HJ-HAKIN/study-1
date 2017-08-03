@@ -80,8 +80,8 @@ var obj = {
         }
     },
     onClickBear : function (e) {
-        this.selectBear = true;
         var target = $(e.currentTarget);
+        this.selectBear = true;
         this.currentIndex = target.closest('li').index();
         console.log(this.currentIndex);
     },

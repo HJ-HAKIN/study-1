@@ -61,30 +61,29 @@ var obj = {
 		this.container = $('.evt_wrap');
 		this.selectBtn = this.container.find('.btn_app');
 		this.topArea = this.container.find('.bxlst');
-		this.label = this.topArea.find('label');
+		this.inputRadio = this.topArea.find('input[type=radio]');
 		this.bottomArea = this.container.find('.game_area');
 		this.bottomList = this.bottomArea.children();
 	},
 	bindEvents : function () {
-		this.label.on('click', $.proxy(this.onClickBear, this));
+		this.inputRadio.on('change', $.proxy(this.onClickBear, this));
 		this.selectBtn.on('click', $.proxy(this.onClickFunc, this));
 	},
 	onClickFunc : function () {
-		$('html,body').animate({scrollTop:'400'}, 400, this.chkJoin());
-		this.chkJoin();
-	},
-	onClickBear : function (e) {
-		this.joinEvent = true;
-		var target = $(e.currentTarget);
-	},
-	chkJoin : function () {
 		if (!this.joinEvent) {
 			alert('곰을 선택해 주세요');
 		} else {
 			this.setMove();
 		}
 	},
+	onClickBear : function (e) {
+		this.joinEvent = true;
+		var target = $(e.currentTarget);
+		this.currentTarget = target.closest('li').index();
+		console.log(this.currentTarget);
+	},
 	setMove : function () {
+		$('html, body').animate({scrollTop:'400'}, 400);
 		this.bottomList.find('.gom').delay(400).animate({
 			transition : 'all ' + this.setTime/1000 + 's ease',
 			top: '98px'

@@ -66,10 +66,11 @@ var obj = {
 		this.bottomList = this.bottomArea.children();
 	},
 	bindEvents : function () {
+		this.label.on('click', $.proxy(this.onClickBear, this));
 		this.selectBtn.on('click', $.proxy(this.onClickFunc, this));
-		this.label.on('click', $.proxy(this.onClickBear, this))
 	},
 	onClickFunc : function () {
+		$('html,body').animate({scrollTop:'400'}, 400, this.chkJoin());
 		this.chkJoin();
 	},
 	onClickBear : function (e) {

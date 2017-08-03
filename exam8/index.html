@@ -55,6 +55,7 @@ var obj = {
     },
     initOpts : function () {
         this.joinEvent = false;
+        this.selectBear = false;
         this.setTime = 400;
     },
     setElements : function () {
@@ -70,27 +71,30 @@ var obj = {
         this.selectBtn.on('click', $.proxy(this.onClickFunc, this));
     },
     onClickFunc : function () {
-        if (!this.joinEvent) {
+        if (!this.selectBear) {
             alert('곰을 선택해 주세요');
+        } else if (this.joinEvent) {
+            alert('이미 참여하셨습니다.');
         } else {
             this.setMove();
         }
     },
     onClickBear : function (e) {
-        this.joinEvent = true;
+        this.selectBear = true;
         var target = $(e.currentTarget);
         this.currentIndex = target.closest('li').index();
         console.log(this.currentIndex);
     },
     setMove : function () {
-        $('html, body').animate({scrollTop:'400'}, 400);
-        this.bottomList.find('.gom').delay(400).animate({
+        $('html, body').animate({scrollTop:'400'}, this.setTime);
+        this.bottomList.find('.gom').delay(this.setTime).animate({
             transition : 'all ' + this.setTime/1000 + 's ease',
             top: '98px'
         });
         this.slideTime = setTimeout($.proxy(this.setClass, this), 800);
     },
     setClass : function () {
+        this.joinEvent = true;
         this.bottomList.addClass('winlane');
     }
 }

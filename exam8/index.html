@@ -82,8 +82,7 @@ var polarEvent = {
     onClickBtn : function () {
         if (this.joinEvent) {
             alert('이미 참여하셨습니다.');
-        }
-        else if (!this.selectBear) {
+        } else if (!this.selectBear) {
             alert('곰을 선택해 주세요.');
         } else {
             this.playGame = (this.gameType) ? this.setView() : this.removeArray();

@@ -66,6 +66,7 @@ var polarEvent = {
         this.gameType = false; //trye : 해당 index, false : 랜덤 index
         this.selectBear = false;
         this.setTime = 400;
+        this.slideAfter = 800;
         this.joinEvent = false;
     },
     bindEvents : function () {
@@ -76,6 +77,7 @@ var polarEvent = {
         var target = $(e.currentTarget);
         this.selectBear = true;
         this.currentIndex = target.closest('li').index();
+        this.createArray();
         this.setIndex();
     },
     onClickBtn : function () {
@@ -104,11 +106,12 @@ var polarEvent = {
         this.currentIndex = this.array[this.currentIndex];
     },
     setView : function () {
-        this.slideList.eq(this.currentIndex).find('.gom').delay(400).animate({
+        $('html, body').animate({scrollTop : '400'}, this.setTime);
+        this.slideList.eq(this.currentIndex).find('.gom').delay(this.setTime).animate({
             transition : 'all ' + this.setTime/1000 + 's ease',
             top : '100px'
         })
-        var slideTime = setTimeout($.proxy(this.setClass, this), 800);
+        var slideTime = setTimeout($.proxy(this.setClass, this), this.slideAfter);
     },
     setClass : function () {
         this.joinEvent = true;

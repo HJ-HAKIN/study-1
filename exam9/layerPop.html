@@ -59,7 +59,55 @@ button::-moz-focus-inner{padding:0;border:0}
 <script src="../js/libs/jquery.ba-outside-events.min.js"></script>
 <script>
 (function (win, $) {
-    
+    var layerPopup = {
+        init: function () {
+            this.setElements();
+            this.initLayout();
+            this.bindEvents();
+        },
+        setElements : function () {
+            this.layerBtn = $('.js-btn_pos').find('button');
+            this.layerArea = $('.js-layer_area');
+            this.closeBtn = this.layerArea.find('.layer_close button');
+            this.layerPos = this.layerArea.find('.layer_pos');
+        },
+        initLayout : function () {
+            var wrapAreaTag = '<span style="position:absolute;width:1px;height:1px;" tabindex="0"></span>';
+            this.layerArea.hide();
+            this.layerPos.attr('tabindex', '0');
+            this.layerPos.before(wrapAreaTag);
+            this.layerPos.after(wrapAreaTag);
+            this.prevTag = this.layerPos.prev();
+            this.nextTag = this.layerPos.next();
+        },
+        bindEvents : function () {
+            this.layerBtn.on('click', $.proxy(this.onClickFunc, this));
+            this.closeBtn.on('click', $.proxy(this.layerOutside, this));
+            this.prevTag.on('focusin', $.proxy(this.prevFocusFunc, this));
+            this.nextTag.on('focusin', $.proxy(this.nextFocusFunc, this));
+        },
+        outsideEvent : function () {
+            this.layerPos.on('clickoutside', $.proxy(this.layerOutside, this));
+        },
+        onClickFunc : function (e) {
+            this.target = $(e.currentTarget);
+            this.layerArea.show();
+            this.layerPos.focus();
+            var outsideTime = setTimeout($.proxy(this.outsideEvent, this), 30);
+        },
+        layerOutside : function () {
+            this.layerArea.hide();
+            this.target.focus();
+            this.layerPos.off('clickoutside');
+        },
+        prevFocusFunc : function () {
+            this.closeBtn.focus();
+        },
+        nextFocusFunc : function () {
+            this.layerPos.focus();
+        }
+    }
+    layerPopup.init();
 
 })(window, window.jQuery);
 </script>

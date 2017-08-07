@@ -63,7 +63,7 @@ var polarEvent = {
         this.slideList = this.bottomArea.find('.game_area').children();
     },
     initOpts : function () {
-        this.gameType = true; //trye : 해당 index, false : 랜덤 index
+        this.gameType = false; //trye : 해당 index, false : 랜덤 index
         this.selectBear = false;
         this.setTime = 400;
         this.joinEvent = false;
@@ -76,20 +76,16 @@ var polarEvent = {
         var target = $(e.currentTarget);
         this.selectBear = true;
         this.currentIndex = target.closest('li').index();
+        this.setIndex();
     },
     onClickBtn : function () {
         if (this.joinEvent) {
             alert('이미 참여하셨습니다.');
         }
-        else if (this.selectBear) {
-            this.setIndex();
-            if (this.gameType) {
-                this.setView();
-            } else {
-                this.removeArray();
-            }
-        } else {
+        else if (!this.selectBear) {
             alert('곰을 선택해 주세요.');
+        } else {
+            this.playGame = (this.gameType) ? this.setView() : this.removeArray();
         } 
     },
     createArray : function () {

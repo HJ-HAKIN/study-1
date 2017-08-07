@@ -47,58 +47,79 @@
 
 <script src="../js/libs/jquery-1.12.4.min.js"></script>
 <script>
-var obj = {
+var polarEvent = {
     init : function () {
         this.setElements();
         this.initOpts();
+        this.createArray();
         this.bindEvents();
     },
     setElements : function () {
         this.container = $('.evt_wrap');
-        this.selectBtn = this.container.find('.btn_app');
-        this.topArea = this.container.find('.bxlst');
-        this.inputRadio = this.topArea.find('input[type=radio]');
-        this.bottomArea = this.container.find('.game_area');
-        this.bottomList = this.bottomArea.children();
+        this.topArea = this.container.find('.evt_area');
+        this.bottomArea = this.container.find('.evt_ct2');
+        this.inputRadio = this.topArea.find('input[type="radio"]');
+        this.selectBtn = this.topArea.find('.btn_app');
+        this.slideList = this.bottomArea.find('.game_area').children();
     },
     initOpts : function () {
-        this.joinEvent = false;
+        this.gameType = true; //trye : 해당 index, false : 랜덤 index
         this.selectBear = false;
         this.setTime = 400;
+        this.joinEvent = false;
     },
     bindEvents : function () {
         this.inputRadio.on('change', $.proxy(this.onClickBear, this));
-        this.selectBtn.on('click', $.proxy(this.onClickFunc, this));
-    },
-    onClickFunc : function () {
-        if (!this.selectBear) {
-            alert('곰을 선택해 주세요');
-        } else if (this.joinEvent) {
-            alert('이미 참여하셨습니다.');
-        } else {
-            this.setMove();
-        }
+        this.selectBtn.on('click', $.proxy(this.onClickBtn, this));
     },
     onClickBear : function (e) {
         var target = $(e.currentTarget);
         this.selectBear = true;
         this.currentIndex = target.closest('li').index();
-        console.log(this.currentIndex);
     },
-    setMove : function () {
-        $('html, body').animate({scrollTop:'400'}, this.setTime);
-        this.bottomList.find('.gom').delay(this.setTime).animate({
+    onClickBtn : function () {
+        if (this.joinEvent) {
+            alert('이미 참여하셨습니다.');
+        }
+        else if (this.selectBear) {
+            this.setIndex();
+            if (this.gameType) {
+                this.setView();
+            } else {
+                this.removeArray();
+            }
+        } else {
+            alert('곰을 선택해 주세요.');
+        } 
+    },
+    createArray : function () {
+        this.array = [];
+        for (var i = 0, max = this.slideList.length; i < max; i++) {
+            this.array.push(i);
+        }
+    },
+    removeArray : function () {
+        this.array.splice(this.currentIndex, 1);
+        this.radomIndex = Math.floor(Math.random() * this.array.length);
+        this.currentIndex = this.array[this.radomIndex];
+        this.setView();
+    },
+    setIndex : function () {
+        this.currentIndex = this.array[this.currentIndex];
+    },
+    setView : function () {
+        this.slideList.eq(this.currentIndex).find('.gom').delay(400).animate({
             transition : 'all ' + this.setTime/1000 + 's ease',
-            top: '98px'
-        });
-        this.slideTime = setTimeout($.proxy(this.setClass, this), 800);
+            top : '100px'
+        })
+        var slideTime = setTimeout($.proxy(this.setClass, this), 800);
     },
     setClass : function () {
         this.joinEvent = true;
-        this.bottomList.addClass('winlane');
+        this.slideList.eq(this.currentIndex).addClass('winlane');
     }
 }
-obj.init();
+polarEvent.init();
 </script>
 </div>
 </body>

@@ -66,7 +66,6 @@ var polarEvent = {
         this.selectBear = false;
         this.joinEvent = false;
         this.setTime = 400;
-        this.slideAfter = 800;
     },
     bindEvents : function () {
         this.inputRadio.on('change', $.proxy(this.onClickBear, this));
@@ -108,8 +107,7 @@ var polarEvent = {
         this.slideList.eq(this.currentIndex).find('.gom').delay(this.setTime).animate({
             transition : 'all ' + this.setTime/1000 + 's ease',
             top : '100px'
-        })
-        var slideTime = setTimeout($.proxy(this.setClass, this), this.slideAfter);
+        }, $.proxy(this.setClass, this));
     },
     setClass : function () {
         this.joinEvent = true;

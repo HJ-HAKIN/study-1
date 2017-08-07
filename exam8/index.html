@@ -65,9 +65,9 @@ var polarEvent = {
     initOpts : function () {
         this.gameType = false; //trye : 해당 index, false : 랜덤 index
         this.selectBear = false;
+        this.joinEvent = false;
         this.setTime = 400;
         this.slideAfter = 800;
-        this.joinEvent = false;
     },
     bindEvents : function () {
         this.inputRadio.on('change', $.proxy(this.onClickBear, this));

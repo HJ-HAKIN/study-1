@@ -6,6 +6,7 @@
     var UTIL = win.examProject.common.util;
 
     win.examProject.slideObj = function (container, args) {
+        console.log(container);
         var defParams = {
             prevBtn : '.btn_prev',
             nextBtn : '.btn_next',
@@ -134,6 +135,10 @@
     };
 
     $(function () {
-        $('.js-slide-wrap').examProjectslideObj();
+        $('.js-slide-wrap').examProjectslideObj({
+            slideOpts : {
+                setAuto : false
+            }
+        });
     });
 })(window, window.jQuery);

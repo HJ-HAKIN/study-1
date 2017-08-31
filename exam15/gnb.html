@@ -130,6 +130,8 @@
     };
     win.stProject.gnb.prototype = {
         init : function () {
+            console.log($(win).height());
+            console.log(UTIL.winSize().h);
             this.setElements();
             if (UTIL.isSupportTransform) {
                 this.initLayout();
@@ -146,6 +148,65 @@
             this.openBtn = this.obj.find(this.opts.openBtn);
             this.closeBtn = this.obj.find(this.opts.closeBtn);
             this.moMenu = this.obj.find(this.opts.moMenu);
+        },
+        initLayout : function () {
+            this.setType = (UTIL.winSize().w > this.opts.breakPoint) ? 'pc' : 'mo';
+        },
+        resizeEvent : function () {
+            $(win).on('resize', $.proxy(this.setEvents, this));
+        },
+        setEvents : function () {
+            if (UTIL.winSize().w > this.opts.breakPoint) {
+                if (this.setType === 'pc') {
+                    this.setType = 'mo';
+                    this.setPcLayout();
+                    this.setPcEvent(true);
+                    this.setMoEvent(false);
+                }
+            } else {
+                if (this.setType === 'mo') {
+                    this.setType = 'pc';
+                    this.setMoLayout();
+                    this.setMoEvent(true);
+                    this.setPcEvent(false);
+                }
+            }
+        },
+        setPcEvent : function (type) {
+            if (type) {
+                this.listChild.on('mouseenter mouseleave focusin', $.proxy(this.setPcHover, this));
+            } else {
+                this.listChild.off('mouseenter mouseleave focusin');
+            }
+        },
+        setMoEvent : function (type) {
+            if (type) {
+                this.openBtn.on('click', $.proxy(this.onOpenFunc, this));
+                this.closeBtn.on('click', $.proxy(this.onCloseFunc, this));
+            } else {
+                this.openBtn.off('click');
+                this.closeBtn.off('click');
+            }
+        },
+        setPcHover : function (e) {
+            var target = $(e.currentTarget);
+            if (e.type === 'mouseenter' || e.type === 'focusin') {
+                target.find(this.opts.listContent).show();
+            } else if (e.type === 'mouseleave') {
+                target.find(this.opts.listContent).hide();
+            }
+        },
+        onOpenFunc : function () {
+            this.moMenu.css('left', '0');
+        },
+        onCloseFunc : function () {
+            this.moMenu.css('left', '');
+        },
+        setPcLayout : function () {
+            this.listContent.hide();
+        },
+        setMoLayout : function () {
+            this.listContent.show();
         }
     }
 
